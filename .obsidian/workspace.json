@@ -4,24 +4,31 @@
     "type": "split",
     "children": [
       {
-        "id": "535cb6b71c3a5375",
+        "id": "e84124650ce542c3",
         "type": "tabs",
         "children": [
           {
-            "id": "f1f5299d12fd93a1",
+            "id": "f9508ab23cb71607",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AGENTS.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "AGENTS"
+              "title": "新标签页"
+            }
+          },
+          {
+            "id": "a925064f605df216",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新标签页"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -184,30 +191,26 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c1173590ae2670a1",
+  "active": "a925064f605df216",
   "lastOpenFiles": [
-    "硅谷顶尖 AI 大佬如何搭建个人AI知识库？从0开始用Claude Code + Obsidian搭建Karpathy的LLM Wiki知识库_哔哩哔哩_bilibili.md",
     "AGENTS.md",
-    "CLAUDE.md",
-    "raw/Obsidian 小白完整入门教程(本地知识库).md",
-    "README.md",
-    "写发版报告/数智工厂/SKILL.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/pptx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/pptx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/pptx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/pptx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/docx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/docx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/tool-use.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/README.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/streaming.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/batches.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/files-api.md",
+    "写发版报告/迭代公告/历史版本迭代/V3.37.0版本/贵州3.37.0版本迭代信息汇总0511.xlsx",
+    "写发版报告/迭代公告/历史版本迭代/V3.37.0版本/福建3.37.0版本迭代信息汇总0511.xlsx",
+    "写发版报告/迭代公告/历史版本迭代/V3.37.0版本/湖北3.37.0版本迭代信息汇总0511.xlsx",
+    "写发版报告/迭代公告/历史版本迭代/V3.37.0版本/数智工厂V3.37.0版本试用环境更新公告.md",
+    "写发版报告/迭代公告/历史版本迭代/V3.37.0版本/广东3.37.0版本迭代信息汇总0511.xlsx",
+    "写发版报告/迭代公告/历史版本迭代/V3.37.0版本",
+    "写发版报告/迭代公告/历史版本迭代/V3.36.0版本/福建3.36.0版本迭代信息汇总0427.xlsx",
+    "写发版报告/迭代公告/历史版本迭代/V3.36.0版本/贵州3.36.0版本迭代信息汇总0427.xlsx",
+    "写发版报告/迭代公告/历史版本迭代/V3.36.0版本/湖北3.36.0版本迭代信息汇总0427.xlsx",
+    "写发版报告/迭代公告/历史版本迭代/V3.36.0版本/数智工厂V3.36.0版本试用环境更新公告.docx",
+    "写发版报告/迭代公告/历史版本迭代/V3.36.0版本/广东3.36.0版本迭代信息汇总0427.xlsx",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/managed-agents/README.md",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/tool-use.md",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/streaming.md",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/files-api.md",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/README.md",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/batches.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/python/managed-agents/README.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/python/claude-api/tool-use.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/python/claude-api/streaming.md",
@@ -215,13 +218,17 @@
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/python/claude-api/files-api.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/python/claude-api/batches.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/ruby/managed-agents/README.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/java/managed-agents/README.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/php/managed-agents/README.md",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/java/managed-agents/README.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/go/managed-agents/README.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/tech-innovation.md",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/sunset-boulevard.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/ocean-depths.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/modern-minimalist.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/sunset-boulevard.md",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/midnight-galaxy.md",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/golden-hour.md",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/forest-canopy.md",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/desert-rose.md",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/10-员工离职管理列表页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/09-入职管理列表页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/08-公告管理列表页.png",
