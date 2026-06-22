@@ -37,7 +37,7 @@
         ├── 🩺 lint/             ← 自定义：知识体检，修复死链、补充 index、发现认知冲突
         ├── 🔌 obsidian-cli/     ← Obsidian官方：调用 Obsidian 原生 API 进行检索、打开页面
         └── 🪄 defuddle/         ← Obsidian官方：将网页 URL 自动清理并转化为 Markdown 存入 raw/
-```
+```1
 
 
 ## 使用方式
