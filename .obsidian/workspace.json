@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "未命名.md",
+                "file": "READMD.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "未命名"
+              "title": "READMD"
             }
           }
         ]
@@ -186,10 +186,11 @@
   },
   "active": "f1f5299d12fd93a1",
   "lastOpenFiles": [
-    "READMD.md",
-    "未命名.md",
-    "学习管理/wiki/供应链疑问确认清单.md",
+    "硅谷顶尖 AI 大佬如何搭建个人AI知识库？从0开始用Claude Code + Obsidian搭建Karpathy的LLM Wiki知识库_哔哩哔哩_bilibili.md",
     "未命名.canvas",
+    "未命名.md",
+    "READMD.md",
+    "学习管理/wiki/供应链疑问确认清单.md",
     "GitHub文件管理包/05-GitHub文件管理检查清单.md",
     "GitHub文件管理包/04-Codex整理GitHub仓库提示词.md",
     "GitHub文件管理包/03-协作与权限规范.md",
@@ -198,7 +199,6 @@
     "GitHub文件管理包/开始这里-GitHub文件管理只看这个.md",
     "GitHub文件管理包/README.md",
     "GitHub文件管理包",
-    "硅谷顶尖 AI 大佬如何搭建个人AI知识库？从0开始用Claude Code + Obsidian搭建Karpathy的LLM Wiki知识库_哔哩哔哩_bilibili.md",
     "看板类产品使用包/开始这里-产品经理只看这个.md",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/10-员工离职管理列表页.png",
     "看板类产品使用包/README.md",
@@ -226,7 +226,6 @@
     "看板类产品使用包/10-数据分析方法与结论规范.md.folderdownload.crdownload",
     "看板类产品使用包/09-看板类产品经理执行SOP.md",
     "看板类产品使用包/07-门店动销与热力图专项.md",
-    "看板类产品使用包/04-数据处理与输出物规范.md",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/06-新增员工档案-04标签信息标签页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/05-新增员工档案-03用工信息标签页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/04-新增员工档案-02个人信息标签页.png",
