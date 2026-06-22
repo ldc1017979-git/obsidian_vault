@@ -11,45 +11,14 @@
             "id": "f1f5299d12fd93a1",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "未命名.canvas",
-                "viewState": {
-                  "x": 0,
-                  "y": 0,
-                  "zoom": 0
-                }
+                "file": "未命名.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
+              "icon": "lucide-file",
               "title": "未命名"
-            }
-          },
-          {
-            "id": "6dc12c540cc9f806",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "写发版报告/数智工厂/供应链/字段/服务商/码源申请记录.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "码源申请记录"
-            }
-          },
-          {
-            "id": "f226e89eb7dd40c5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "写发版报告/数智工厂/供应链/字段/服务商/码源申请记录.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "码源申请记录"
             }
           }
         ]
@@ -211,13 +180,16 @@
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "bases:新建数据库": false
+      "bases:新建数据库": false,
+      "obsidian-git:Open Git source control": false
     }
   },
   "active": "f1f5299d12fd93a1",
   "lastOpenFiles": [
-    "READMD.md",
+    "学习管理/wiki/供应链疑问确认清单.md",
+    "未命名.md",
     "未命名.canvas",
+    "READMD.md",
     "GitHub文件管理包/05-GitHub文件管理检查清单.md",
     "GitHub文件管理包/04-Codex整理GitHub仓库提示词.md",
     "GitHub文件管理包/03-协作与权限规范.md",
@@ -255,7 +227,6 @@
     "看板类产品使用包/09-看板类产品经理执行SOP.md",
     "看板类产品使用包/07-门店动销与热力图专项.md",
     "看板类产品使用包/04-数据处理与输出物规范.md",
-    "看板类产品使用包/03-看板结构与交互规范.md",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/06-新增员工档案-04标签信息标签页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/05-新增员工档案-03用工信息标签页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/04-新增员工档案-02个人信息标签页.png",
