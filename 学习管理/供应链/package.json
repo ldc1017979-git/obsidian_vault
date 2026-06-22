@@ -1,0 +1,9 @@
+{
+  "name": "supply-chain-prototype",
+  "private": true,
+  "description": "智链 SCM 原型本地预览",
+  "scripts": {
+    "start": "node prototype/server.js",
+    "preview": "node prototype/server.js"
+  }
+}
