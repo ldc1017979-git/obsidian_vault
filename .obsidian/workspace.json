@@ -8,23 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "f1f5299d12fd93a1",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "未命名.canvas",
-                "viewState": {
-                  "x": 0,
-                  "y": 0,
-                  "zoom": 0
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "未命名"
-            }
-          },
-          {
             "id": "6dc12c540cc9f806",
             "type": "leaf",
             "state": {
@@ -211,13 +194,14 @@
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "bases:新建数据库": false
+      "bases:新建数据库": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f1f5299d12fd93a1",
+  "active": "6dc12c540cc9f806",
   "lastOpenFiles": [
-    "READMD.md",
     "未命名.canvas",
+    "READMD.md",
     "GitHub文件管理包/05-GitHub文件管理检查清单.md",
     "GitHub文件管理包/04-Codex整理GitHub仓库提示词.md",
     "GitHub文件管理包/03-协作与权限规范.md",
