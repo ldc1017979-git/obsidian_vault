@@ -19,4 +19,3 @@
 - `rmdir /s`
 - `Remove-Item -Recurse`
 - `rm -rf
-- 111
