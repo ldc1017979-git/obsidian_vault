@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "写发版报告/数智工厂/供应链/字段/服务商/要货计划.md",
+                "file": "AGENTS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "要货计划 的反向链接列表"
+              "title": "AGENTS 的反向链接列表"
             }
           },
           {
@@ -184,7 +184,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c1173590ae2670a1",
+  "active": "759147f8f6d1bc3a",
   "lastOpenFiles": [
     "CLAUDE.md",
     "写发版报告/数智工厂/发版公告/D贵阳市中小企业数字化转型城市试点数字化转型项目-华彬数智工厂20260117-评审修改.docx",
