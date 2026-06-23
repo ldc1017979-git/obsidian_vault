@@ -4,21 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "516cc373bda7914a",
+        "id": "535cb6b71c3a5375",
         "type": "tabs",
         "children": [
           {
-            "id": "759147f8f6d1bc3a",
+            "id": "6dc12c540cc9f806",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AGENTS.md",
+                "file": "写发版报告/数智工厂/供应链/字段/服务商/码源申请记录.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "AGENTS"
+              "title": "码源申请记录"
+            }
+          },
+          {
+            "id": "f226e89eb7dd40c5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "写发版报告/数智工厂/供应链/字段/服务商/码源申请记录.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "码源申请记录"
             }
           }
         ]
@@ -41,7 +55,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": true
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -94,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CLAUDE.md",
+                "file": "写发版报告/数智工厂/供应链/字段/服务商/要货计划.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +118,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "CLAUDE 的反向链接列表"
+              "title": "要货计划 的反向链接列表"
             }
           },
           {
@@ -184,53 +198,54 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "759147f8f6d1bc3a",
+  "active": "6dc12c540cc9f806",
   "lastOpenFiles": [
-    "CLAUDE.md",
-    "README.md",
-    "AGENTS.md",
-    "写发版报告/数智工厂/发版公告/D贵阳市中小企业数字化转型城市试点数字化转型项目-华彬数智工厂20260117-评审修改.docx",
-    "学习管理/assets",
-    "学习管理/wiki/工厂端疑问确认清单(6).md",
-    "写发版报告/迭代公告/历史版本迭代/V3.37.0版本/贵州3.37.0版本迭代信息汇总0511.xlsx",
-    "写发版报告/迭代公告/历史版本迭代/V3.37.0版本/福建3.37.0版本迭代信息汇总0511.xlsx",
-    "写发版报告/迭代公告/历史版本迭代/V3.37.0版本/湖北3.37.0版本迭代信息汇总0511.xlsx",
-    "写发版报告/迭代公告/历史版本迭代/V3.37.0版本/数智工厂V3.37.0版本试用环境更新公告.md",
-    "写发版报告/迭代公告/历史版本迭代/V3.37.0版本/广东3.37.0版本迭代信息汇总0511.xlsx",
-    "写发版报告/迭代公告/历史版本迭代/V3.37.0版本",
-    "写发版报告/迭代公告/历史版本迭代/V3.36.0版本/福建3.36.0版本迭代信息汇总0427.xlsx",
-    "写发版报告/迭代公告/历史版本迭代/V3.36.0版本/贵州3.36.0版本迭代信息汇总0427.xlsx",
-    "写发版报告/迭代公告/历史版本迭代/V3.36.0版本/湖北3.36.0版本迭代信息汇总0427.xlsx",
+    "学习管理/raw/看板类产品使用包/开始这里-产品经理只看这个.md",
+    "学习管理/raw/看板类产品使用包/README.md",
+    "学习管理/raw/看板类产品使用包/12-date-fenxi-skills能力映射.md",
+    "学习管理/raw/看板类产品使用包/11-团队试跑固定流程.md",
+    "学习管理/raw/看板类产品使用包/06-留存复购生命周期专项.md",
+    "学习管理/raw/看板类产品使用包/10-数据分析方法与结论规范.md",
+    "学习管理/raw/看板类产品使用包/09-看板类产品经理执行SOP.md",
+    "学习管理/raw/看板类产品使用包/08-看板工作流来源说明.md",
+    "学习管理/raw/看板类产品使用包/07-门店动销与热力图专项.md",
+    "学习管理/raw/看板类产品使用包/05-看板验收清单.md",
+    "学习管理/raw/看板类产品使用包/00-看板资料准备清单.md",
+    "学习管理/raw/看板类产品使用包/04-数据处理与输出物规范.md",
+    "学习管理/raw/看板类产品使用包/03-看板结构与交互规范.md",
+    "学习管理/raw/看板类产品使用包/02-指标口径与数据验证规范.md",
+    "学习管理/raw/看板类产品使用包/01-看板项目启动提示词.md",
+    "学习管理/raw/看板类产品使用包/00-一句话启动入口.md",
+    "学习管理/raw/看板类产品使用包",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/xlsx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/pptx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/pptx/scripts/office/schemas/ecma/fouth-edition/opc-digSig.xsd",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/pptx/scripts/office/schemas/ecma/fouth-edition/opc-coreProperties.xsd",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/pptx/scripts/office/schemas/ecma/fouth-edition/opc-contentTypes.xsd",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/docx/scripts/office/schemas/ecma/fouth-edition/opc-relationships.xsd",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/managed-agents/README.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/tool-use.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/streaming.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/files-api.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/README.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/batches.md",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/typescript/claude-api/README.md",
+    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/ruby/managed-agents/README.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/python/managed-agents/README.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/python/claude-api/tool-use.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/python/claude-api/streaming.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/python/claude-api/README.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/python/claude-api/files-api.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/python/claude-api/batches.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/ruby/managed-agents/README.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/php/managed-agents/README.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/java/managed-agents/README.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/claude-api/go/managed-agents/README.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/tech-innovation.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/sunset-boulevard.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/ocean-depths.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/modern-minimalist.md",
+    "未命名.canvas",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/10-员工离职管理列表页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/09-入职管理列表页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/08-公告管理列表页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/07-文号管理列表页.png",
-    "写发版报告/数智工厂/发版公告/福建基地/screenshots/04-新增员工档案-02个人信息标签页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/06-新增员工档案-04标签信息标签页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/05-新增员工档案-03用工信息标签页.png",
+    "写发版报告/数智工厂/发版公告/福建基地/screenshots/04-新增员工档案-02个人信息标签页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/03-新增员工档案-01员工档案基础信息.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/02-人员档案库列表页.png",
-    "写发版报告/数智工厂/发版公告/福建基地/screenshots/01-工作台首页.png",
-    "未命名.canvas"
+    "写发版报告/数智工厂/发版公告/福建基地/screenshots/01-工作台首页.png"
   ]
 }
