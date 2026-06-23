@@ -11,10 +11,14 @@
             "id": "df99941dfe86913f",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "写发版报告/数智工厂/供应链/字段/服务商/码源申请记录.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "码源申请记录"
             }
           }
         ]
