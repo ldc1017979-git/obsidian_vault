@@ -4,31 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "e84124650ce542c3",
+        "id": "516cc373bda7914a",
         "type": "tabs",
         "children": [
           {
-            "id": "f9508ab23cb71607",
+            "id": "759147f8f6d1bc3a",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "CLAUDE.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
-            }
-          },
-          {
-            "id": "a925064f605df216",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "CLAUDE"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -191,9 +184,13 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a925064f605df216",
+  "active": "c1173590ae2670a1",
   "lastOpenFiles": [
+    "学习管理/assets",
+    "README.md",
+    "CLAUDE.md",
     "AGENTS.md",
+    "学习管理/wiki/工厂端疑问确认清单(6).md",
     "写发版报告/迭代公告/历史版本迭代/V3.37.0版本/贵州3.37.0版本迭代信息汇总0511.xlsx",
     "写发版报告/迭代公告/历史版本迭代/V3.37.0版本/福建3.37.0版本迭代信息汇总0511.xlsx",
     "写发版报告/迭代公告/历史版本迭代/V3.37.0版本/湖北3.37.0版本迭代信息汇总0511.xlsx",
@@ -225,10 +222,6 @@
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/sunset-boulevard.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/ocean-depths.md",
     "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/modern-minimalist.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/midnight-galaxy.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/golden-hour.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/forest-canopy.md",
-    "写发版报告/迭代公告/SKILL.md/skills-main/skills/theme-factory/themes/desert-rose.md",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/10-员工离职管理列表页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/09-入职管理列表页.png",
     "写发版报告/数智工厂/发版公告/福建基地/screenshots/08-公告管理列表页.png",
