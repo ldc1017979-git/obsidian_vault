@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>成品检测质量表现看板</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --panel-soft: #f1f5f4;
+      --ink: #1f2933;
+      --muted: #667085;
+      --line: #d7dde2;
+      --blue: #2f6f9f;
+      --green: #16835f;
+      --amber: #b7791f;
+      --red: #b42318;
+      --teal: #087f8c;
+      --shadow: 0 10px 28px rgba(21, 31, 45, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .topbar {
+      max-width: 1480px;
+      margin: 0 auto;
+      min-height: 72px;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 4px;
+      font-size: 13px;
+    }
+
+    .status-strip {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: var(--muted);
+      white-space: nowrap;
+      font-size: 12px;
+    }
+
+    .pill strong { color: var(--ink); }
+
+    main {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 18px 24px 36px;
+    }
+
+    .filters {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 12px;
+      align-items: end;
+    }
+
+    .field { min-width: 0; }
+    .span-2 { grid-column: span 2; }
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+
+    label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    input, select {
+      width: 100%;
+      min-height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      padding: 7px 9px;
+      font: inherit;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    button {
+      min-height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      padding: 7px 12px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    button.primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    button:hover { filter: brightness(0.97); }
+
+    .section {
+      margin-top: 18px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin: 0 0 10px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .section-note {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .kpi {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      min-height: 116px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .kpi .name {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .kpi .value {
+      font-size: 28px;
+      font-weight: 750;
+      margin-top: 8px;
+      line-height: 1.1;
+    }
+
+    .kpi .delta {
+      margin-top: 9px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .delta.good { color: var(--green); }
+    .delta.bad { color: var(--red); }
+    .delta.warn { color: var(--amber); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      min-width: 0;
+    }
+
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .chart {
+      width: 100%;
+      height: 300px;
+      display: block;
+    }
+
+    .chart.small { height: 250px; }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th, td {
+      border-bottom: 1px solid #edf0f2;
+      text-align: left;
+      padding: 10px 8px;
+      vertical-align: middle;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 12px;
+      background: #fafbfc;
+    }
+
+    tr:hover td { background: #f8fafb; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      max-width: 100%;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 12px;
+      border: 1px solid transparent;
+    }
+
+    .tag.ok { color: var(--green); background: #eaf7f1; border-color: #bde7d5; }
+    .tag.warn { color: var(--amber); background: #fff6df; border-color: #f3d48a; }
+    .tag.bad { color: var(--red); background: #fff1f0; border-color: #ffc9c4; }
+    .tag.info { color: var(--blue); background: #eaf3f8; border-color: #c0d9e7; }
+
+    .insight-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .insight-list li {
+      border-left: 4px solid var(--blue);
+      background: var(--panel-soft);
+      padding: 10px 12px;
+      border-radius: 6px;
+      line-height: 1.65;
+    }
+
+    .insight-list strong { color: var(--ink); }
+
+    .table-wrap {
+      overflow: auto;
+      border: 1px solid #edf0f2;
+      border-radius: 8px;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 14px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 1100px) {
+      .filters { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+      .span-2, .span-3, .span-4 { grid-column: span 3; }
+      .kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .topbar { align-items: flex-start; flex-direction: column; }
+      main { padding: 14px 12px 28px; }
+      .filters { grid-template-columns: 1fr; }
+      .span-2, .span-3, .span-4 { grid-column: span 1; }
+      .kpi-grid { grid-template-columns: 1fr; }
+      .actions { flex-wrap: wrap; }
+      .chart { height: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div>
+        <h1>成品检测质量表现看板</h1>
+        <div class="subtitle">数据源：检测批号信息确认单、理化及微生物检验报告、红牛成品检验结果、成品发货通知单</div>
+      </div>
+      <div class="status-strip">
+        <span class="pill">主口径：<strong>批次 / 批数</strong></span>
+        <span class="pill">关联键：<strong>批次 + 批号 + 线别</strong></span>
+        <span class="pill">状态：<strong>方案原型</strong></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="filters" aria-label="筛选条件">
+      <div class="field span-2">
+        <label for="dateStart">开始日期</label>
+        <input id="dateStart" type="date" value="2026-06-19" />
+      </div>
+      <div class="field span-2">
+        <label for="dateEnd">结束日期</label>
+        <input id="dateEnd" type="date" value="2026-06-25" />
+      </div>
+      <div class="field span-2">
+        <label for="compareMode">对比周期</label>
+        <select id="compareMode">
+          <option value="prev">自动对比上一周期</option>
+          <option value="multi">多组日期对比</option>
+          <option value="none">不对比</option>
+        </select>
+      </div>
+      <div class="field span-2">
+        <label for="lineFilter">产线</label>
+        <select id="lineFilter">
+          <option value="all">全部产线</option>
+          <option>一线</option>
+          <option>二线</option>
+          <option>三线</option>
+          <option>四线</option>
+          <option>五线</option>
+          <option>六线</option>
+        </select>
+      </div>
+      <div class="field span-2">
+        <label for="resultFilter">检验结果</label>
+        <select id="resultFilter">
+          <option value="all">全部结果</option>
+          <option value="合格">合格</option>
+          <option value="不合格">不合格</option>
+          <option value="检验中">检验中</option>
+        </select>
+      </div>
+      <div class="field span-2">
+        <label for="keyword">批次 / 批号</label>
+        <input id="keyword" type="search" placeholder="如 HB26F017 或 867AF" />
+      </div>
+      <div class="field span-4">
+        <label for="multiCompare">多组对比日期</label>
+        <input id="multiCompare" type="text" value="2026-06-12~2026-06-18；2026-06-19~2026-06-25" />
+      </div>
+      <div class="field span-4">
+        <label for="sourceScope">数据范围</label>
+        <select id="sourceScope">
+          <option>已完成检验 + 检验中</option>
+          <option>仅已完成检验</option>
+          <option>仅发货通知已生成批次</option>
+        </select>
+      </div>
+      <div class="field span-4 actions">
+        <button class="primary" id="applyBtn">应用筛选</button>
+        <button id="resetBtn">重置</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>核心指标</h2>
+        <div class="section-note">合格率排除暂存、检验中、未生成状态；复检指标为待接入复检单后的正式口径</div>
+      </div>
+      <div class="kpi-grid">
+        <article class="kpi">
+          <div class="name">检测批次数</div>
+          <div class="value" id="kpiBatch">0</div>
+          <div class="delta good" id="kpiBatchDelta">较上一周期 +0</div>
+        </article>
+        <article class="kpi">
+          <div class="name">检测量（批数）</div>
+          <div class="value" id="kpiCount">0</div>
+          <div class="delta" id="kpiCountDelta">按批数求和</div>
+        </article>
+        <article class="kpi">
+          <div class="name">合格率</div>
+          <div class="value" id="kpiPass">0%</div>
+          <div class="delta bad" id="kpiPassDelta">目标 ≥ 99.6%</div>
+        </article>
+        <article class="kpi">
+          <div class="name">不合格 / 检验中批次</div>
+          <div class="value" id="kpiRisk">0</div>
+          <div class="delta warn">需跟进原因和复检状态</div>
+        </article>
+        <article class="kpi">
+          <div class="name">复检频次</div>
+          <div class="value" id="kpiRecheck">0</div>
+          <div class="delta">待复检单正式接入</div>
+        </article>
+        <article class="kpi">
+          <div class="name">发货待确认批次</div>
+          <div class="value" id="kpiShip">0</div>
+          <div class="delta warn">通知单状态未生成/未确认</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section grid-2">
+      <div class="panel">
+        <h3>检测量与合格率趋势 <span class="section-note">按检验日期</span></h3>
+        <canvas class="chart" id="trendChart" width="900" height="300"></canvas>
+        <div class="legend">
+          <span><i class="dot" style="background: var(--blue)"></i>检测量</span>
+          <span><i class="dot" style="background: var(--green)"></i>合格率</span>
+          <span><i class="dot" style="background: var(--amber)"></i>上一周期检测量</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>AI结论区 <span class="section-note">仅基于原型数据</span></h3>
+        <ul class="insight-list" id="insights"></ul>
+      </div>
+    </section>
+
+    <section class="section grid-3">
+      <div class="panel">
+        <h3>产线检测量对比</h3>
+        <canvas class="chart small" id="lineVolumeChart" width="420" height="250"></canvas>
+      </div>
+      <div class="panel">
+        <h3>产线合格率对比</h3>
+        <canvas class="chart small" id="linePassChart" width="420" height="250"></canvas>
+      </div>
+      <div class="panel">
+        <h3>不合格原因分布</h3>
+        <canvas class="chart small" id="reasonChart" width="420" height="250"></canvas>
+      </div>
+    </section>
+
+    <section class="section grid-2">
+      <div class="panel">
+        <h3>发货通知关联</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>发货通知单</th>
+                <th>批次</th>
+                <th>产线</th>
+                <th>检测结果</th>
+                <th>通知单状态</th>
+                <th>处理建议</th>
+              </tr>
+            </thead>
+            <tbody id="shipBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>指标口径</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>指标</th>
+                <th>口径</th>
+                <th>数据源</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>检测量</td>
+                <td>优先 SUM(批数)，备选 COUNT(DISTINCT 批次)</td>
+                <td>检测批号信息确认单</td>
+              </tr>
+              <tr>
+                <td>合格率</td>
+                <td>合格批次数 / 已完成检验批次数</td>
+                <td>理化及微生物检验报告、红牛成品检验结果</td>
+              </tr>
+              <tr>
+                <td>复检率</td>
+                <td>发生复检的批次数 / 检测批次数</td>
+                <td>复检单或同批次重复检验记录</td>
+              </tr>
+              <tr>
+                <td>发货风险</td>
+                <td>不合格、检验中、通知单未生成批次</td>
+                <td>成品发货通知单 + 检验结果</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="panel">
+        <h3>批次明细下钻 <span class="section-note">点击图表或筛选条件后同步刷新</span></h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>单据编号</th>
+                <th>产品名称</th>
+                <th>批次</th>
+                <th>批号</th>
+                <th>批数</th>
+                <th>线别</th>
+                <th>生产日期</th>
+                <th>检验日期</th>
+                <th>检验结果</th>
+                <th>不合格原因</th>
+                <th>报告状态</th>
+                <th>通知单状态</th>
+              </tr>
+            </thead>
+            <tbody id="detailBody"></tbody>
+          </table>
+        </div>
+        <div class="footer-note">
+          开发接入时建议把“检测批号信息确认单”作为批次主表，通过批次、批号、线别关联理化及微生物检验报告、红牛成品检验结果、成品发货通知单。若要输出真实不合格原因和复检率，需要继续确认报告详情字段和复检单来源。
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const rows = [
+      { doc: "CP260625003", product: "红牛维生素功能饮料", batch: "HB26E017", batchNo: "630BE-653BE", count: 24, line: "五线", prodDate: "2026-06-24", inspectDate: "2026-06-25", microDate: "2026-06-25", result: "合格", reason: "", report: "未生成", notice: "未生成", ship: "FH260625005", recheck: 0 },
+      { doc: "CP260625004", product: "红牛维生素功能饮料（牛磺酸强化型）", batch: "HB26A017", batchNo: "218QQ-241QQ", count: 24, line: "一线", prodDate: "2026-06-24", inspectDate: "2026-06-25", microDate: "2026-06-25", result: "合格", reason: "", report: "未生成", notice: "未生成", ship: "FH260625001", recheck: 0 },
+      { doc: "CP260625005", product: "红牛维生素功能饮料", batch: "HB26D017", batchNo: "098CD-121CD", count: 24, line: "四线", prodDate: "2026-06-24", inspectDate: "2026-06-25", microDate: "2026-06-25", result: "不合格", reason: "纯净度不合格", report: "未生成", notice: "未生成", ship: "FH260625004", recheck: 1 },
+      { doc: "CP260625006", product: "红牛维生素功能饮料", batch: "HB26C017", batchNo: "673BC-695BC", count: 23, line: "三线", prodDate: "2026-06-24", inspectDate: "2026-06-25", microDate: "2026-06-25", result: "合格", reason: "", report: "未生成", notice: "未生成", ship: "FH260625003", recheck: 0 },
+      { doc: "CP260625001", product: "红牛维生素功能饮料", batch: "HB26B017", batchNo: "069VB-092VB", count: 24, line: "二线", prodDate: "2026-06-24", inspectDate: "2026-06-25", microDate: "2026-06-25", result: "检验中", reason: "微生物待出结果", report: "未生成", notice: "未生成", ship: "FH260625002", recheck: 0 },
+      { doc: "CP260625002", product: "红牛维生素功能饮料", batch: "HB26F017", batchNo: "867AF-890AF", count: 24, line: "六线", prodDate: "2026-06-24", inspectDate: "2026-06-25", microDate: "2026-06-25", result: "不合格", reason: "细菌检出", report: "未生成", notice: "未生成", ship: "FH260625006", recheck: 2 },
+      { doc: "CP260624002", product: "红牛维生素功能饮料", batch: "HB26C017", batchNo: "649BC-672BC", count: 24, line: "三线", prodDate: "2026-06-23", inspectDate: "2026-06-24", microDate: "2026-06-24", result: "合格", reason: "", report: "已生成", notice: "未生成", ship: "FH260624003", recheck: 0 },
+      { doc: "CP260624003", product: "红牛维生素功能饮料", batch: "HB26B017", batchNo: "046VB-068VB", count: 23, line: "二线", prodDate: "2026-06-23", inspectDate: "2026-06-24", microDate: "2026-06-24", result: "不合格", reason: "Brix异常", report: "已生成", notice: "未生成", ship: "FH260624002", recheck: 1 },
+      { doc: "CP260624004", product: "红牛维生素功能饮料", batch: "HB26F017", batchNo: "844AF-866AF", count: 23, line: "六线", prodDate: "2026-06-23", inspectDate: "2026-06-24", microDate: "2026-06-24", result: "检验中", reason: "微生物待出结果", report: "已生成", notice: "未生成", ship: "FH260624006", recheck: 0 },
+      { doc: "CP260623001", product: "红牛维生素功能饮料", batch: "HB26A016", batchNo: "172QQ-194QQ", count: 23, line: "一线", prodDate: "2026-06-22", inspectDate: "2026-06-23", microDate: "2026-06-23", result: "合格", reason: "", report: "已生成", notice: "已生成", ship: "FH260623001", recheck: 0 },
+      { doc: "CP260622005", product: "红牛维生素功能饮料", batch: "HB26E016", batchNo: "582BE-605BE", count: 24, line: "五线", prodDate: "2026-06-21", inspectDate: "2026-06-22", microDate: "2026-06-22", result: "不合格", reason: "pH异常", report: "已生成", notice: "已生成", ship: "FH260622005", recheck: 1 },
+      { doc: "CP260621006", product: "红牛维生素功能饮料", batch: "HB26F016", batchNo: "820AF-843AF", count: 24, line: "六线", prodDate: "2026-06-20", inspectDate: "2026-06-21", microDate: "2026-06-21", result: "合格", reason: "", report: "已生成", notice: "已生成", ship: "FH260621006", recheck: 0 }
+    ];
+
+    const prevTrend = {
+      "2026-06-19": 118,
+      "2026-06-20": 122,
+      "2026-06-21": 120,
+      "2026-06-22": 116,
+      "2026-06-23": 121,
+      "2026-06-24": 117,
+      "2026-06-25": 119
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    function inRange(value, start, end) {
+      return value >= start && value <= end;
+    }
+
+    function filteredRows() {
+      const start = $("dateStart").value || "1900-01-01";
+      const end = $("dateEnd").value || "2999-12-31";
+      const line = $("lineFilter").value;
+      const result = $("resultFilter").value;
+      const keyword = $("keyword").value.trim().toLowerCase();
+      return rows.filter((row) => {
+        const dateOk = inRange(row.inspectDate, start, end);
+        const lineOk = line === "all" || row.line === line;
+        const resultOk = result === "all" || row.result === result;
+        const keywordOk = !keyword || `${row.batch} ${row.batchNo} ${row.doc}`.toLowerCase().includes(keyword);
+        return dateOk && lineOk && resultOk && keywordOk;
+      });
+    }
+
+    function groupBy(list, key) {
+      return list.reduce((acc, row) => {
+        const k = typeof key === "function" ? key(row) : row[key];
+        acc[k] = acc[k] || [];
+        acc[k].push(row);
+        return acc;
+      }, {});
+    }
+
+    function tag(value) {
+      const cls = value === "合格" || value === "已生成" ? "ok" : value === "不合格" ? "bad" : value === "检验中" || value === "未生成" ? "warn" : "info";
+      return `<span class="tag ${cls}">${value || "--"}</span>`;
+    }
+
+    function updateKpis(list) {
+      const completed = list.filter((r) => r.result !== "检验中");
+      const pass = completed.filter((r) => r.result === "合格").length;
+      const fail = list.filter((r) => r.result === "不合格").length;
+      const pending = list.filter((r) => r.result === "检验中").length;
+      const totalCount = list.reduce((sum, r) => sum + r.count, 0);
+      const passRate = completed.length ? pass / completed.length : 0;
+      const recheck = list.reduce((sum, r) => sum + r.recheck, 0);
+      const shipPending = list.filter((r) => r.notice !== "已生成" || r.result !== "合格").length;
+      $("kpiBatch").textContent = list.length;
+      $("kpiCount").textContent = totalCount;
+      $("kpiPass").textContent = `${(passRate * 100).toFixed(2)}%`;
+      $("kpiRisk").textContent = fail + pending;
+      $("kpiRecheck").textContent = recheck;
+      $("kpiShip").textContent = shipPending;
+      $("kpiBatchDelta").textContent = list.length >= 8 ? "较上一周期 +2" : "筛选后样本减少";
+      $("kpiCountDelta").textContent = `平均 ${(totalCount / Math.max(list.length, 1)).toFixed(1)} 批/单`;
+      $("kpiPassDelta").textContent = passRate >= 0.996 ? "达到目标 ≥ 99.6%" : "低于目标 ≥ 99.6%";
+    }
+
+    function drawAxes(ctx, w, h, pad) {
+      ctx.strokeStyle = "#d7dde2";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(pad, pad);
+      ctx.lineTo(pad, h - pad);
+      ctx.lineTo(w - pad, h - pad);
+      ctx.stroke();
+    }
+
+    function drawBarChart(canvas, labels, values, color, formatter = (v) => v) {
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width;
+      const h = canvas.height;
+      const pad = 42;
+      ctx.clearRect(0, 0, w, h);
+      drawAxes(ctx, w, h, pad);
+      const max = Math.max(...values, 1);
+      const gap = 14;
+      const barW = Math.max(16, (w - pad * 2 - gap * (values.length - 1)) / values.length);
+      values.forEach((v, i) => {
+        const x = pad + i * (barW + gap);
+        const bh = (h - pad * 2) * (v / max);
+        const y = h - pad - bh;
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, barW, bh);
+        ctx.fillStyle = "#667085";
+        ctx.font = "12px Microsoft YaHei";
+        ctx.textAlign = "center";
+        ctx.fillText(labels[i], x + barW / 2, h - 14);
+        ctx.fillStyle = "#1f2933";
+        ctx.fillText(formatter(v), x + barW / 2, y - 6);
+      });
+    }
+
+    function drawTrend(canvas, list) {
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width;
+      const h = canvas.height;
+      const pad = 46;
+      ctx.clearRect(0, 0, w, h);
+      drawAxes(ctx, w, h, pad);
+      const byDate = groupBy(list, "inspectDate");
+      const labels = Object.keys(byDate).sort();
+      const volumes = labels.map((d) => byDate[d].reduce((sum, r) => sum + r.count, 0));
+      const rates = labels.map((d) => {
+        const completed = byDate[d].filter((r) => r.result !== "检验中");
+        const pass = completed.filter((r) => r.result === "合格").length;
+        return completed.length ? pass / completed.length : 0;
+      });
+      const maxVol = Math.max(...volumes, ...Object.values(prevTrend), 1);
+      const step = labels.length > 1 ? (w - pad * 2) / (labels.length - 1) : 1;
+
+      function point(i, val, max) {
+        return [pad + i * step, h - pad - (h - pad * 2) * (val / max)];
+      }
+
+      function line(values, color, max) {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        values.forEach((v, i) => {
+          const [x, y] = point(i, v, max);
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+        values.forEach((v, i) => {
+          const [x, y] = point(i, v, max);
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.arc(x, y, 4, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+
+      line(volumes, "#2f6f9f", maxVol);
+      line(labels.map((d) => prevTrend[d] || 0), "#b7791f", maxVol);
+      line(rates.map((r) => r * maxVol), "#16835f", maxVol);
+
+      ctx.fillStyle = "#667085";
+      ctx.font = "12px Microsoft YaHei";
+      ctx.textAlign = "center";
+      labels.forEach((d, i) => {
+        const x = pad + i * step;
+        ctx.fillText(d.slice(5), x, h - 14);
+      });
+    }
+
+    function updateCharts(list) {
+      drawTrend($("trendChart"), list);
+      const byLine = groupBy(list, "line");
+      const lineLabels = ["一线", "二线", "三线", "四线", "五线", "六线"];
+      const volumes = lineLabels.map((line) => (byLine[line] || []).reduce((sum, r) => sum + r.count, 0));
+      const passRates = lineLabels.map((line) => {
+        const lineRows = (byLine[line] || []).filter((r) => r.result !== "检验中");
+        const pass = lineRows.filter((r) => r.result === "合格").length;
+        return lineRows.length ? Number((pass / lineRows.length * 100).toFixed(1)) : 0;
+      });
+      drawBarChart($("lineVolumeChart"), lineLabels, volumes, "#2f6f9f");
+      drawBarChart($("linePassChart"), lineLabels, passRates, "#16835f", (v) => `${v}%`);
+
+      const reasonRows = list.filter((r) => r.reason && r.result !== "合格");
+      const byReason = groupBy(reasonRows, "reason");
+      const reasonLabels = Object.keys(byReason).length ? Object.keys(byReason) : ["暂无"];
+      const reasonValues = reasonLabels.map((reason) => byReason[reason] ? byReason[reason].length : 0);
+      drawBarChart($("reasonChart"), reasonLabels.map((r) => r.length > 6 ? `${r.slice(0, 6)}...` : r), reasonValues, "#b42318");
+    }
+
+    function updateTables(list) {
+      $("shipBody").innerHTML = list.map((row) => {
+        const advice = row.result === "合格" && row.notice === "已生成" ? "可发货" : row.result === "合格" ? "补生成通知单" : "暂停发货并复核";
+        return `<tr>
+          <td>${row.ship}</td>
+          <td>${row.batch}</td>
+          <td>${row.line}</td>
+          <td>${tag(row.result)}</td>
+          <td>${tag(row.notice)}</td>
+          <td>${advice}</td>
+        </tr>`;
+      }).join("");
+
+      $("detailBody").innerHTML = list.map((row) => `<tr>
+        <td>${row.doc}</td>
+        <td title="${row.product}">${row.product}</td>
+        <td>${row.batch}</td>
+        <td>${row.batchNo}</td>
+        <td>${row.count}</td>
+        <td>${row.line}</td>
+        <td>${row.prodDate}</td>
+        <td>${row.inspectDate}</td>
+        <td>${tag(row.result)}</td>
+        <td title="${row.reason || "--"}">${row.reason || "--"}</td>
+        <td>${tag(row.report)}</td>
+        <td>${tag(row.notice)}</td>
+      </tr>`).join("");
+    }
+
+    function updateInsights(list) {
+      const completed = list.filter((r) => r.result !== "检验中");
+      const pass = completed.filter((r) => r.result === "合格").length;
+      const passRate = completed.length ? pass / completed.length : 0;
+      const failRows = list.filter((r) => r.result === "不合格");
+      const byLine = groupBy(failRows, "line");
+      const worstLine = Object.entries(byLine).sort((a, b) => b[1].length - a[1].length)[0];
+      const byReason = groupBy(failRows, "reason");
+      const topReason = Object.entries(byReason).sort((a, b) => b[1].length - a[1].length)[0];
+      const pendingShip = list.filter((r) => r.notice !== "已生成" || r.result !== "合格");
+      const insights = [
+        `<strong>发现：</strong>当前筛选范围合格率为 ${(passRate * 100).toFixed(2)}%，低于首页目标值 99.6% 时应进入原因追踪。`,
+        `<strong>证据：</strong>不合格批次 ${failRows.length} 个，检验中批次 ${list.filter((r) => r.result === "检验中").length} 个，发货待确认批次 ${pendingShip.length} 个。`,
+        `<strong>判断：</strong>${worstLine ? `${worstLine[0]}不合格批次最多；` : ""}${topReason ? `主要原因集中在“${topReason[0]}”。` : "当前未发现明确不合格原因。"}`,
+        `<strong>动作：</strong>优先打开理化及微生物检验报告详情，补齐指标项；再接入复检单，形成复检频次和复检率正式口径。`
+      ];
+      $("insights").innerHTML = insights.map((item) => `<li>${item}</li>`).join("");
+    }
+
+    function render() {
+      const list = filteredRows();
+      updateKpis(list);
+      updateCharts(list);
+      updateTables(list);
+      updateInsights(list);
+    }
+
+    $("applyBtn").addEventListener("click", render);
+    $("resetBtn").addEventListener("click", () => {
+      $("dateStart").value = "2026-06-19";
+      $("dateEnd").value = "2026-06-25";
+      $("compareMode").value = "prev";
+      $("lineFilter").value = "all";
+      $("resultFilter").value = "all";
+      $("keyword").value = "";
+      render();
+    });
+
+    ["dateStart", "dateEnd", "compareMode", "lineFilter", "resultFilter", "keyword", "sourceScope"].forEach((id) => {
+      $(id).addEventListener("change", render);
+      $(id).addEventListener("input", () => {
+        if (id === "keyword") render();
+      });
+    });
+
+    render();
+  </script>
+</body>
+</html>
