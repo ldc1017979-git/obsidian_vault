@@ -1,0 +1,38 @@
+{
+  "selectedShapes": [
+    {
+      "id": "shape:cowart-futuristic-workspace-20260630-105833",
+      "type": "image",
+      "parentId": "page:page",
+      "x": 46,
+      "y": 202,
+      "rotation": 0,
+      "meta": {
+        "cowartGeneratedStandalone": true
+      },
+      "isAiImageHolder": false,
+      "props": {
+        "w": 512,
+        "h": 512,
+        "assetId": "asset:cowart-futuristic-workspace-20260630-105833",
+        "playing": true,
+        "url": "",
+        "crop": null,
+        "flipX": false,
+        "flipY": false,
+        "altText": "Futuristic creative workspace illustration"
+      },
+      "asset": {
+        "id": "asset:cowart-futuristic-workspace-20260630-105833",
+        "type": "image",
+        "name": "cowart-futuristic-workspace-20260630-105833.png",
+        "src": "/page-assets/page/cowart-futuristic-workspace-20260630-105833.png",
+        "w": 1254,
+        "h": 1254,
+        "mimeType": "image/png",
+        "fileSize": 1819073
+      }
+    }
+  ],
+  "updatedAt": "2026-06-30T03:24:10.829Z"
+}
