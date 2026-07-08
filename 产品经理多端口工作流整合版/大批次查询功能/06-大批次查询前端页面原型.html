@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>大批次查询 - 数智工厂</title>
+  <style>
+    :root {
+      --blue: #1677ff;
+      --blue-strong: #1d56d8;
+      --blue-soft: #eaf3ff;
+      --sidebar-blue: #1d58d8;
+      --bg: #f2f4f7;
+      --panel: #ffffff;
+      --line: #dfe6ef;
+      --line-soft: #edf1f6;
+      --head: #edf5ff;
+      --text: #1f2d3d;
+      --muted: #7a8796;
+      --green: #18a058;
+      --orange: #f59a23;
+      --red: #e34d59;
+      --shadow: 0 2px 8px rgba(31, 45, 61, .10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--bg);
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 186px 1fr;
+      grid-template-rows: 48px 32px 1fr;
+    }
+
+    .brand {
+      grid-row: 1 / span 2;
+      background: var(--sidebar-blue);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 22px;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 38px;
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: end;
+      gap: 4px;
+    }
+
+    .brand-mark span {
+      display: block;
+      background: #fff;
+      border-radius: 1px 1px 0 0;
+    }
+
+    .brand-mark span:nth-child(1) { height: 19px; }
+    .brand-mark span:nth-child(2) { height: 30px; }
+    .brand-mark span:nth-child(3) { height: 24px; }
+
+    .brand-title {
+      line-height: 1.25;
+      font-weight: 700;
+      font-size: 17px;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      opacity: .92;
+      font-weight: 500;
+    }
+
+    .topbar {
+      grid-column: 2;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .hamburger {
+      width: 50px;
+      height: 48px;
+      border: 0;
+      background: transparent;
+      color: #24364b;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      height: 100%;
+      min-width: 0;
+      white-space: nowrap;
+    }
+
+    .nav a {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      color: #1f2d3d;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      font-size: 14px;
+    }
+
+    .nav a.active {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
+      font-weight: 600;
+    }
+
+    .top-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 16px 0 12px;
+      height: 100%;
+      border-left: 1px solid var(--line-soft);
+    }
+
+    .global-search {
+      width: 124px;
+      height: 30px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 0 30px 0 10px;
+      color: var(--text);
+      outline: none;
+    }
+
+    .top-icon {
+      color: #192332;
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid #ffb22b;
+      background: #ffe2a8;
+      display: grid;
+      place-items: center;
+      color: #1f2d3d;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .tabs {
+      grid-column: 2;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-left: 12px;
+      box-shadow: 0 2px 4px rgba(31, 45, 61, .08);
+      z-index: 2;
+    }
+
+    .tab {
+      height: 24px;
+      min-width: 52px;
+      padding: 0 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #3b4654;
+      font-size: 13px;
+      border-radius: 2px;
+    }
+
+    .tab.active {
+      color: var(--blue);
+      border-color: #79b8ff;
+      background: #f3f9ff;
+    }
+
+    .sidebar {
+      grid-row: 3;
+      background: #fff;
+      border-right: 1px solid var(--line);
+      overflow: auto;
+    }
+
+    .menu-item {
+      height: 54px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 20px;
+      color: #24364b;
+      border-left: 3px solid transparent;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-item.active {
+      background: #edf4ff;
+      color: var(--blue);
+      border-left-color: var(--blue);
+      font-weight: 600;
+    }
+
+    .menu-icon {
+      width: 18px;
+      text-align: center;
+      color: inherit;
+      flex: 0 0 auto;
+    }
+
+    main {
+      grid-column: 2;
+      grid-row: 3;
+      min-width: 0;
+      overflow: auto;
+      padding: 12px 12px 28px;
+    }
+
+    .query-card,
+    .table-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      box-shadow: var(--shadow);
+    }
+
+    .query-card {
+      padding: 14px 18px 12px;
+      margin-bottom: 10px;
+    }
+
+    .query-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: 28px;
+      row-gap: 12px;
+      align-items: center;
+    }
+
+    .field {
+      display: grid;
+      grid-template-columns: 88px minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .field label {
+      text-align: right;
+      color: #24364b;
+    }
+
+    .required {
+      color: var(--red);
+      margin-right: 3px;
+    }
+
+    .control {
+      width: 100%;
+      height: 32px;
+      border: 1px solid #d4dde8;
+      border-radius: 3px;
+      background: #fff;
+      color: var(--text);
+      padding: 0 10px;
+      outline: none;
+    }
+
+    .control:focus {
+      border-color: #78b8ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, .10);
+    }
+
+    .query-actions {
+      grid-column: 3;
+      justify-self: end;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      height: 32px;
+      min-width: 72px;
+      border-radius: 3px;
+      border: 1px solid #d4dde8;
+      padding: 0 14px;
+      cursor: pointer;
+      background: #fff;
+      color: #3b4654;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn.primary {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .btn.primary:hover {
+      background: #0f6ae8;
+    }
+
+    .btn:hover {
+      border-color: #98b7d8;
+    }
+
+    .table-card {
+      min-height: 560px;
+      overflow: hidden;
+    }
+
+    .table-toolbar {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .summary {
+      color: #3b4654;
+      font-size: 13px;
+    }
+
+    .summary strong {
+      color: var(--blue);
+      font-weight: 600;
+    }
+
+    .table-tools {
+      display: flex;
+      gap: 14px;
+      color: #233043;
+      font-size: 16px;
+    }
+
+    .tool-btn {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      color: inherit;
+      padding: 2px;
+      line-height: 1;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      min-height: 512px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      min-width: 1040px;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line-soft);
+      height: 42px;
+      padding: 0 10px;
+      text-align: center;
+      vertical-align: middle;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    th {
+      background: var(--head);
+      color: #25364a;
+      font-weight: 600;
+      height: 38px;
+    }
+
+    td {
+      color: #334357;
+      background: #fff;
+    }
+
+    tr:nth-child(even) td {
+      background: #fcfdff;
+    }
+
+    .left {
+      text-align: left;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 64px;
+      height: 24px;
+      padding: 0 8px;
+      border-radius: 2px;
+      border: 1px solid transparent;
+      font-size: 13px;
+      line-height: 1;
+    }
+
+    .status.done {
+      color: var(--green);
+      border-color: #bce8ce;
+      background: #effaf3;
+    }
+
+    .status.submit {
+      color: var(--blue);
+      border-color: #b8d9ff;
+      background: #eef6ff;
+    }
+
+    .status.draft {
+      color: var(--orange);
+      border-color: #ffd9a3;
+      background: #fff7ea;
+    }
+
+    .link-action {
+      border: 0;
+      background: transparent;
+      color: var(--blue);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .link-action:hover {
+      text-decoration: underline;
+    }
+
+    .empty {
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      top: 84px;
+      transform: translateX(-50%);
+      min-width: 240px;
+      max-width: 520px;
+      padding: 10px 16px;
+      background: #fff;
+      border: 1px solid #ffd8bf;
+      box-shadow: var(--shadow);
+      color: #b54708;
+      border-radius: 3px;
+      display: none;
+      z-index: 20;
+      text-align: center;
+    }
+
+    .toast.show {
+      display: block;
+    }
+
+    .drawer-mask {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 24, 40, .32);
+      display: none;
+      z-index: 30;
+    }
+
+    .drawer-mask.show {
+      display: block;
+    }
+
+    .drawer {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: min(780px, 86vw);
+      height: 100%;
+      background: #fff;
+      box-shadow: -4px 0 16px rgba(31, 45, 61, .16);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .drawer-head {
+      height: 54px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .close {
+      width: 28px;
+      height: 28px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-size: 22px;
+      color: #24364b;
+    }
+
+    .drawer-body {
+      padding: 18px;
+      overflow: auto;
+      background: #f8fafc;
+      flex: 1;
+    }
+
+    .detail-section {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      height: 38px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--line-soft);
+      font-weight: 600;
+      background: #fbfdff;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+    }
+
+    .detail-item {
+      min-height: 40px;
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .detail-item:nth-last-child(-n + 2) {
+      border-bottom: 0;
+    }
+
+    .detail-label {
+      background: #f6f8fb;
+      color: #5f6d7d;
+      padding: 10px 12px;
+      border-right: 1px solid var(--line-soft);
+    }
+
+    .detail-value {
+      padding: 10px 12px;
+      color: #25364a;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .dev-note {
+      position: fixed;
+      right: 20px;
+      bottom: 22px;
+      z-index: 15;
+      border: 0;
+      border-radius: 3px;
+      height: 38px;
+      padding: 0 14px;
+      color: #fff;
+      background: #24364b;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+
+    .note-panel {
+      position: fixed;
+      right: 20px;
+      bottom: 70px;
+      width: min(460px, calc(100vw - 40px));
+      max-height: 62vh;
+      display: none;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      z-index: 16;
+      overflow: auto;
+    }
+
+    .note-panel.show {
+      display: block;
+    }
+
+    .note-panel h3 {
+      margin: 0;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: 15px;
+    }
+
+    .note-panel ul {
+      margin: 0;
+      padding: 12px 22px 16px 30px;
+      line-height: 1.8;
+      color: #3b4654;
+    }
+
+    @media (max-width: 1100px) {
+      .app {
+        grid-template-columns: 68px 1fr;
+      }
+
+      .brand {
+        justify-content: center;
+        padding: 0;
+      }
+
+      .brand-title {
+        display: none;
+      }
+
+      .menu-item span:last-child {
+        display: none;
+      }
+
+      .menu-item {
+        justify-content: center;
+        padding: 0;
+      }
+
+      .query-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .query-actions {
+        grid-column: 2;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .app {
+        display: block;
+      }
+
+      .brand,
+      .sidebar {
+        display: none;
+      }
+
+      .topbar,
+      .tabs {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+      }
+
+      .nav {
+        overflow-x: auto;
+      }
+
+      .top-actions {
+        display: none;
+      }
+
+      main {
+        padding: 10px;
+      }
+
+      .query-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field {
+        grid-template-columns: 82px minmax(0, 1fr);
+      }
+
+      .query-actions {
+        grid-column: 1;
+        justify-self: stretch;
+      }
+
+      .query-actions .btn {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="brand">
+      <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="brand-title">数智工厂<div class="brand-sub">测试版</div></div>
+    </aside>
+
+    <header class="topbar">
+      <button class="hamburger" aria-label="收起菜单">≡</button>
+      <nav class="nav" aria-label="一级导航">
+        <a href="#">运营中心</a>
+        <a href="#">仓储管理</a>
+        <a class="active" href="#">生产管理</a>
+        <a href="#">质量管理</a>
+        <a href="#">设备管理</a>
+        <a href="#">安全管理</a>
+        <a href="#">人事行政管理</a>
+        <a href="#">财务管理</a>
+        <a href="#">数据中心</a>
+        <a href="#">数据统计</a>
+        <a href="#">综合管理</a>
+        <a href="#">数据看板</a>
+        <a href="#">设置</a>
+      </nav>
+      <div class="top-actions">
+        <input class="global-search" placeholder="请输入" aria-label="全局搜索">
+        <span class="top-icon" title="通知">◇</span>
+        <span class="top-icon" title="上传">●</span>
+        <span class="top-icon" title="全屏">□</span>
+        <div class="avatar" title="测试账号">测</div>
+        <span>测试账号6</span>
+      </div>
+    </header>
+
+    <div class="tabs">
+      <span class="tab">工作台</span>
+      <span class="tab">消息中心 ×</span>
+      <span class="tab active">大批次查询 ×</span>
+    </div>
+
+    <aside class="sidebar">
+      <div class="menu-item active"><span class="menu-icon">•</span><span>过程管理</span></div>
+      <div class="menu-item"><span class="menu-icon">□</span><span>生产库存报表</span></div>
+      <div class="menu-item"><span class="menu-icon">▣</span><span>生产基础信息</span></div>
+      <div class="menu-item"><span class="menu-icon">◇</span><span>配方内容物复核</span></div>
+      <div class="menu-item"><span class="menu-icon">◇</span><span>剩余内容物复核</span></div>
+      <div class="menu-item"><span class="menu-icon">◇</span><span>单据逾期记录</span></div>
+      <div class="menu-item"><span class="menu-icon">◇</span><span>单据逾期设置</span></div>
+      <div class="menu-item"><span class="menu-icon">◇</span><span>全链路追溯</span></div>
+      <div class="menu-item"><span class="menu-icon">◇</span><span>主管</span></div>
+      <div class="menu-item"><span class="menu-icon">◇</span><span>开发过程中发现的遗失...</span></div>
+      <div class="menu-item"><span class="menu-icon">▣</span><span>生产计划管理</span></div>
+    </aside>
+
+    <main>
+      <section class="query-card" aria-label="查询条件">
+        <div class="query-grid">
+          <div class="field">
+            <label for="batchNo"><span class="required">*</span>大批次号:</label>
+            <input id="batchNo" class="control" value="JS26D015" placeholder="请输入大批次号">
+          </div>
+          <div class="field">
+            <label for="produceDate">生产日期:</label>
+            <input id="produceDate" class="control" type="date" value="2026-06-26">
+          </div>
+          <div class="field">
+            <label for="shift">班次:</label>
+            <select id="shift" class="control">
+              <option value="">请选择班次</option>
+              <option value="A2班" selected>A2班</option>
+              <option value="A班">A班</option>
+              <option value="B班">B班</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="line">产线:</label>
+            <select id="line" class="control">
+              <option value="">请选择产线</option>
+              <option value="一线">一线</option>
+              <option value="二线">二线</option>
+              <option value="四线" selected>四线</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="team">班组:</label>
+            <select id="team" class="control">
+              <option value="">请选择班组</option>
+              <option value="A组" selected>A组</option>
+              <option value="B组">B组</option>
+              <option value="C组">C组</option>
+            </select>
+          </div>
+          <div class="query-actions">
+            <button id="searchBtn" class="btn primary" type="button">搜索</button>
+            <button id="resetBtn" class="btn" type="button">重置</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="table-card" aria-label="查询结果">
+        <div class="table-toolbar">
+          <div id="summary" class="summary">请输入大批次号后点击搜索，查询关联工序表单</div>
+          <div class="table-tools" aria-label="表格工具">
+            <button class="tool-btn" title="刷新" type="button">↻</button>
+            <button class="tool-btn" title="列设置" type="button">☷</button>
+            <button class="tool-btn" title="设置" type="button">⚙</button>
+          </div>
+        </div>
+        <div id="tableWrap" class="table-wrap"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <div id="drawerMask" class="drawer-mask" aria-hidden="true">
+    <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <div class="drawer-head">
+        <span id="drawerTitle">工序表单只读详情</span>
+        <button id="closeDrawer" class="close" type="button" aria-label="关闭">×</button>
+      </div>
+      <div id="drawerBody" class="drawer-body"></div>
+    </aside>
+  </div>
+
+  <button id="devNoteBtn" class="dev-note" type="button">开发备注</button>
+  <aside id="notePanel" class="note-panel" aria-label="开发备注">
+    <h3>开发备注 / 逻辑说明</h3>
+    <ul>
+      <li>本原型用于大批次查询页面结构与交互确认，不替代 PRD、字段清单和接口文档。</li>
+      <li>大批次号为必填；生产日期、班次、产线、班组为选填辅助筛选。</li>
+      <li>搜索结果仅展示当前用户有权限查看的工序表单记录，无权限记录不展示。</li>
+      <li>结果默认按工序生产顺序展示，顺序来源需研发确认。</li>
+      <li>状态展示各工序表单原状态，一期不做统一状态映射。</li>
+      <li>点击查看进入原工序表单只读详情页，真实路由和只读控制由研发实现。</li>
+      <li>一期不包含新增、编辑、删除、导出、批量提交、批量审核和缺失工序判断。</li>
+    </ul>
+  </aside>
+
+  <script>
+    const rows = [
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "1. 拆包工序记录", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "李明", submitTime: "2026-06-26 08:40", type: "done" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "2. 灌装工序记录", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "王珊", submitTime: "2026-06-26 09:12", type: "done" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "3. 打码工序记录", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "赵强", submitTime: "2026-06-26 09:45", type: "submit" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "4. 热缩包装", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "周敏", submitTime: "2026-06-26 10:05", type: "submit" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "5. 码垛工序记录", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "黄杰", submitTime: "2026-06-26 10:22", type: "submit" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "6. 生产主管交接班", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "生产主管", submitTime: "2026-06-26 10:35", type: "done" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "半成品检验报告", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "质量员", submitTime: "2026-06-26 10:48", type: "done" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "包装材料物料平衡计算表", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "陈立", submitTime: "2026-06-26 11:00", type: "submit" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "产品标签确认表", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "刘佳", submitTime: "2026-06-26 11:08", type: "submit" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "产品放行单", status: "填写中", date: "2026-06-26", shift: "A2班", operator: "质量员", submitTime: "--", type: "draft" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "车间原材料物资称量记录", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "库管员", submitTime: "2026-06-26 07:55", type: "done" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "车间原材料物资领用记录", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "库管员", submitTime: "2026-06-26 08:02", type: "done" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "成品检验报告", status: "填写中", date: "2026-06-26", shift: "A2班", operator: "质量员", submitTime: "--", type: "draft" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "大批次封面", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "生产主管", submitTime: "2026-06-26 08:10", type: "submit" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "复合香精称量记录", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "称量员", submitTime: "2026-06-26 08:18", type: "done" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "工序管控质量检测报告", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "质量员", submitTime: "2026-06-26 10:58", type: "submit" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "工序控制检验报告", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "质量员", submitTime: "2026-06-26 11:12", type: "submit" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "咖啡因车间库存记录表", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "库管员", submitTime: "2026-06-26 08:06", type: "done" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "咖啡因车间转运记录", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "转运员", submitTime: "2026-06-26 08:25", type: "done" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "开机检查", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "设备员", submitTime: "2026-06-26 07:40", type: "done" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "配料工序记录", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "配料员", submitTime: "2026-06-26 08:30", type: "submit" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "批生产指令", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "生产主管", submitTime: "2026-06-26 07:35", type: "done" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "清场记录（开机）", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "现场员", submitTime: "2026-06-26 07:48", type: "done" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "清场记录（收班）", status: "填写中", date: "2026-06-26", shift: "A2班", operator: "现场员", submitTime: "--", type: "draft" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "溶糖生产工艺记录表", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "溶糖员", submitTime: "2026-06-26 08:50", type: "submit" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "盛料桶物料投料和转运记录", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "投料员", submitTime: "2026-06-26 09:18", type: "submit" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "停机检查", status: "填写中", date: "2026-06-26", shift: "A2班", operator: "设备员", submitTime: "--", type: "draft" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "样品检测", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "质量员", submitTime: "2026-06-26 11:30", type: "submit" },
+      { batchNo: "JS26D015", line: "四线", team: "A组", form: "原辅料物料平衡计算表", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "刘佳", submitTime: "2026-06-26 11:39", type: "done" }
+    ];
+
+    const batchNoEl = document.getElementById("batchNo");
+    const produceDateEl = document.getElementById("produceDate");
+    const shiftEl = document.getElementById("shift");
+    const lineEl = document.getElementById("line");
+    const teamEl = document.getElementById("team");
+    const summaryEl = document.getElementById("summary");
+    const tableWrap = document.getElementById("tableWrap");
+    const toast = document.getElementById("toast");
+    const drawerMask = document.getElementById("drawerMask");
+    const drawerBody = document.getElementById("drawerBody");
+    const notePanel = document.getElementById("notePanel");
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    function renderEmpty(message) {
+      tableWrap.innerHTML = `<div class="empty">${message}</div>`;
+    }
+
+    function renderTable(data) {
+      const body = data.map((row, index) => `
+        <tr>
+          <td class="left" title="${row.form}">${row.form}</td>
+          <td>${row.batchNo}</td>
+          <td>${row.line}</td>
+          <td>${row.shift}</td>
+          <td>${row.team}</td>
+          <td><span class="status ${row.type}">${row.status}</span></td>
+          <td>${row.date}</td>
+          <td>${row.operator}</td>
+          <td>${row.submitTime}</td>
+          <td><button class="link-action" type="button" data-index="${index}">查看</button></td>
+        </tr>
+      `).join("");
+
+      tableWrap.innerHTML = `
+        <table>
+          <colgroup>
+            <col style="width: 220px">
+            <col style="width: 140px">
+            <col style="width: 90px">
+            <col style="width: 100px">
+            <col style="width: 90px">
+            <col style="width: 110px">
+            <col style="width: 120px">
+            <col style="width: 120px">
+            <col style="width: 170px">
+            <col style="width: 90px">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>工序/表单名称</th>
+              <th>大批次号</th>
+              <th>产线</th>
+              <th>班次</th>
+              <th>班组</th>
+              <th>原状态</th>
+              <th>生产日期</th>
+              <th>操作人</th>
+              <th>提交时间</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>${body}</tbody>
+        </table>
+      `;
+
+      tableWrap.querySelectorAll(".link-action").forEach(button => {
+        button.addEventListener("click", () => openDetail(data[Number(button.dataset.index)]));
+      });
+    }
+
+    function buildSummary(filters, count) {
+      const parts = [`大批次号 <strong>${filters.batchNo}</strong>`];
+      if (filters.date) parts.push(`生产日期 <strong>${filters.date}</strong>`);
+      if (filters.shift) parts.push(`班次 <strong>${filters.shift}</strong>`);
+      if (filters.line) parts.push(`产线 <strong>${filters.line}</strong>`);
+      if (filters.team) parts.push(`班组 <strong>${filters.team}</strong>`);
+      return `当前查询：${parts.join("，")}，共 <strong>${count}</strong> 条记录`;
+    }
+
+    function search() {
+      const filters = {
+        batchNo: batchNoEl.value.trim(),
+        date: produceDateEl.value,
+        shift: shiftEl.value,
+        line: lineEl.value,
+        team: teamEl.value
+      };
+
+      if (!filters.batchNo) {
+        showToast("请输入大批次号");
+        batchNoEl.focus();
+        return;
+      }
+
+      let result = rows.filter(row => row.batchNo === filters.batchNo);
+      if (filters.date) result = result.filter(row => row.date === filters.date);
+      if (filters.shift) result = result.filter(row => row.shift === filters.shift);
+      if (filters.line) result = result.filter(row => row.line === filters.line);
+      if (filters.team) result = result.filter(row => row.team === filters.team);
+
+      if (!result.length) {
+        summaryEl.textContent = "";
+        renderEmpty("未查询到该大批次号关联的工序表单，请检查大批次号是否正确");
+        return;
+      }
+
+      summaryEl.innerHTML = buildSummary(filters, result.length);
+      renderTable(result);
+    }
+
+    function reset() {
+      batchNoEl.value = "";
+      produceDateEl.value = "";
+      shiftEl.value = "";
+      lineEl.value = "";
+      teamEl.value = "";
+      summaryEl.textContent = "请输入大批次号后点击搜索，查询关联工序表单";
+      renderEmpty("请输入大批次号后点击搜索，查询关联工序表单");
+    }
+
+    function openDetail(row) {
+      drawerBody.innerHTML = `
+        <section class="detail-section">
+          <div class="section-title">基础信息</div>
+          <div class="detail-grid">
+            <div class="detail-item"><div class="detail-label">大批次号</div><div class="detail-value">${row.batchNo}</div></div>
+            <div class="detail-item"><div class="detail-label">工序表单</div><div class="detail-value">${row.form}</div></div>
+            <div class="detail-item"><div class="detail-label">产线</div><div class="detail-value">${row.line}</div></div>
+            <div class="detail-item"><div class="detail-label">班次</div><div class="detail-value">${row.shift}</div></div>
+            <div class="detail-item"><div class="detail-label">班组</div><div class="detail-value">${row.team}</div></div>
+            <div class="detail-item"><div class="detail-label">生产日期</div><div class="detail-value">${row.date}</div></div>
+            <div class="detail-item"><div class="detail-label">原状态</div><div class="detail-value">${row.status}</div></div>
+            <div class="detail-item"><div class="detail-label">操作人</div><div class="detail-value">${row.operator}</div></div>
+            <div class="detail-item"><div class="detail-label">提交时间</div><div class="detail-value">${row.submitTime}</div></div>
+          </div>
+        </section>
+        <section class="detail-section">
+          <div class="section-title">只读说明</div>
+          <div class="detail-grid">
+            <div class="detail-item"><div class="detail-label">打开方式</div><div class="detail-value">进入原工序表单详情页</div></div>
+            <div class="detail-item"><div class="detail-label">编辑权限</div><div class="detail-value">只读查看，不允许编辑、提交、删除</div></div>
+            <div class="detail-item"><div class="detail-label">数据来源</div><div class="detail-value">Mock 数据，正式数据由批号关联查询接口返回</div></div>
+            <div class="detail-item"><div class="detail-label">待确认</div><div class="detail-value">真实详情页路由、只读控制、字段来源</div></div>
+          </div>
+        </section>
+      `;
+      drawerMask.classList.add("show");
+      drawerMask.setAttribute("aria-hidden", "false");
+    }
+
+    document.getElementById("searchBtn").addEventListener("click", search);
+    document.getElementById("resetBtn").addEventListener("click", reset);
+    document.getElementById("closeDrawer").addEventListener("click", () => {
+      drawerMask.classList.remove("show");
+      drawerMask.setAttribute("aria-hidden", "true");
+    });
+    drawerMask.addEventListener("click", event => {
+      if (event.target === drawerMask) {
+        drawerMask.classList.remove("show");
+        drawerMask.setAttribute("aria-hidden", "true");
+      }
+    });
+    document.getElementById("devNoteBtn").addEventListener("click", () => {
+      notePanel.classList.toggle("show");
+    });
+
+    search();
+  </script>
+</body>
+</html>
