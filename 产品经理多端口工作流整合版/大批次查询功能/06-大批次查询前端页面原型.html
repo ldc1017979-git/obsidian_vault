@@ -786,15 +786,15 @@
           </div>
           <div class="field">
             <label for="produceDate">生产日期:</label>
-            <input id="produceDate" class="control" type="date" value="2026-06-26">
+            <input id="produceDate" class="control" type="date">
           </div>
           <div class="field">
             <label for="shift">班次:</label>
             <select id="shift" class="control">
               <option value="">请选择班次</option>
-              <option value="A2班" selected>A2班</option>
-              <option value="A班">A班</option>
-              <option value="B班">B班</option>
+              <option value="早">早</option>
+              <option value="中">中</option>
+              <option value="晚">晚</option>
             </select>
           </div>
           <div class="field">
@@ -810,9 +810,11 @@
             <label for="team">班组:</label>
             <select id="team" class="control">
               <option value="">请选择班组</option>
-              <option value="A组" selected>A组</option>
-              <option value="B组">B组</option>
-              <option value="C组">C组</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
             </select>
           </div>
           <div class="query-actions">
@@ -853,7 +855,7 @@
     <h3>开发备注 / 逻辑说明</h3>
     <ul>
       <li>本原型用于大批次查询页面结构与交互确认，不替代 PRD、字段清单和接口文档。</li>
-      <li>大批次号为必填；生产日期、班次、产线、班组为选填辅助筛选。</li>
+      <li>大批次号为必填；生产日期、班次（早/中/晚）、产线、班组（A-E）为选填辅助筛选。</li>
       <li>搜索结果仅展示当前用户有权限查看的工序表单记录，无权限记录不展示。</li>
       <li>结果默认按工序生产顺序展示，顺序来源需研发确认。</li>
       <li>状态展示各工序表单原状态，一期不做统一状态映射。</li>
@@ -864,35 +866,48 @@
 
   <script>
     const rows = [
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "1. 拆包工序记录", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "李明", submitTime: "2026-06-26 08:40", type: "done" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "2. 灌装工序记录", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "王珊", submitTime: "2026-06-26 09:12", type: "done" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "3. 打码工序记录", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "赵强", submitTime: "2026-06-26 09:45", type: "submit" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "4. 热缩包装", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "周敏", submitTime: "2026-06-26 10:05", type: "submit" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "5. 码垛工序记录", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "黄杰", submitTime: "2026-06-26 10:22", type: "submit" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "6. 生产主管交接班", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "生产主管", submitTime: "2026-06-26 10:35", type: "done" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "半成品检验报告", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "质量员", submitTime: "2026-06-26 10:48", type: "done" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "包装材料物料平衡计算表", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "陈立", submitTime: "2026-06-26 11:00", type: "submit" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "产品标签确认表", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "刘佳", submitTime: "2026-06-26 11:08", type: "submit" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "产品放行单", status: "填写中", date: "2026-06-26", shift: "A2班", operator: "质量员", submitTime: "--", type: "draft" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "车间原材料物资称量记录", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "库管员", submitTime: "2026-06-26 07:55", type: "done" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "车间原材料物资领用记录", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "库管员", submitTime: "2026-06-26 08:02", type: "done" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "成品检验报告", status: "填写中", date: "2026-06-26", shift: "A2班", operator: "质量员", submitTime: "--", type: "draft" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "大批次封面", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "生产主管", submitTime: "2026-06-26 08:10", type: "submit" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "复合香精称量记录", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "称量员", submitTime: "2026-06-26 08:18", type: "done" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "工序管控质量检测报告", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "质量员", submitTime: "2026-06-26 10:58", type: "submit" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "工序控制检验报告", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "质量员", submitTime: "2026-06-26 11:12", type: "submit" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "咖啡因车间库存记录表", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "库管员", submitTime: "2026-06-26 08:06", type: "done" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "咖啡因车间转运记录", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "转运员", submitTime: "2026-06-26 08:25", type: "done" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "开机检查", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "设备员", submitTime: "2026-06-26 07:40", type: "done" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "配料工序记录", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "配料员", submitTime: "2026-06-26 08:30", type: "submit" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "批生产指令", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "生产主管", submitTime: "2026-06-26 07:35", type: "done" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "清场记录（开机）", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "现场员", submitTime: "2026-06-26 07:48", type: "done" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "清场记录（收班）", status: "填写中", date: "2026-06-26", shift: "A2班", operator: "现场员", submitTime: "--", type: "draft" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "溶糖生产工艺记录表", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "溶糖员", submitTime: "2026-06-26 08:50", type: "submit" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "盛料桶物料投料和转运记录", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "投料员", submitTime: "2026-06-26 09:18", type: "submit" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "停机检查", status: "填写中", date: "2026-06-26", shift: "A2班", operator: "设备员", submitTime: "--", type: "draft" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "样品检测", status: "已提交", date: "2026-06-26", shift: "A2班", operator: "质量员", submitTime: "2026-06-26 11:30", type: "submit" },
-      { batchNo: "JS26D015", line: "四线", team: "A组", form: "原辅料物料平衡计算表", status: "已审核", date: "2026-06-26", shift: "A2班", operator: "刘佳", submitTime: "2026-06-26 11:39", type: "done" }
+      { docNo: "DJ20260626001", batchNo: "JS26D015", line: "四线", team: "B", form: "拆包工序记录", status: "已审核", date: "2026-06-26", shift: "早", operator: "李明", submitTime: "2026-06-26 08:40", type: "done" },
+      { docNo: "DJ20260626002", batchNo: "JS26D015", line: "四线", team: "A", form: "拆包工序记录", status: "已提交", date: "2026-06-27", shift: "晚", operator: "周敏", submitTime: "2026-06-27 20:18", type: "submit" },
+      { docNo: "DJ20260626003", batchNo: "JS26D015", line: "四线", team: "C", form: "灌装工序记录", status: "已审核", date: "2026-06-28", shift: "早", operator: "王珊", submitTime: "2026-06-28 09:12", type: "done" },
+      { docNo: "DJ20260626004", batchNo: "JS26D015", line: "四线", team: "D", form: "灌装工序记录", status: "填写中", date: "2026-06-29", shift: "中", operator: "陈立", submitTime: "--", type: "draft" },
+      { docNo: "DJ20260626005", batchNo: "JS26D015", line: "四线", team: "A", form: "灌装工序记录", status: "已提交", date: "2026-06-30", shift: "晚", operator: "黄杰", submitTime: "2026-06-30 21:05", type: "submit" },
+      { docNo: "DJ20260626006", batchNo: "JS26D015", line: "四线", team: "A", form: "打码工序记录", status: "已提交", date: "2026-07-01", shift: "早", operator: "赵强", submitTime: "2026-07-01 09:45", type: "submit" },
+      { docNo: "DJ20260626007", batchNo: "JS26D015", line: "四线", team: "E", form: "打码工序记录", status: "已审核", date: "2026-07-02", shift: "中", operator: "何伟", submitTime: "2026-07-02 14:02", type: "done" },
+      { docNo: "DJ20260626008", batchNo: "JS26D015", line: "四线", team: "B", form: "热缩包装", status: "已提交", date: "2026-07-03", shift: "早", operator: "刘佳", submitTime: "2026-07-03 10:05", type: "submit" },
+      { docNo: "DJ20260626009", batchNo: "JS26D015", line: "四线", team: "C", form: "热缩包装", status: "已审核", date: "2026-07-04", shift: "晚", operator: "许宁", submitTime: "2026-07-04 22:12", type: "done" },
+      { docNo: "DJ20260626010", batchNo: "JS26D015", line: "四线", team: "B", form: "码垛工序记录", status: "已提交", date: "2026-07-05", shift: "早", operator: "黄杰", submitTime: "2026-07-05 10:22", type: "submit" },
+      { docNo: "DJ20260626011", batchNo: "JS26D015", line: "四线", team: "D", form: "码垛工序记录", status: "已提交", date: "2026-06-26", shift: "中", operator: "孙磊", submitTime: "2026-06-26 15:10", type: "submit" },
+      { docNo: "DJ20260626012", batchNo: "JS26D015", line: "四线", team: "A", form: "生产主管交接班", status: "已审核", date: "2026-06-27", shift: "早", operator: "生产主管", submitTime: "2026-06-27 10:35", type: "done" },
+      { docNo: "DJ20260626013", batchNo: "JS26D015", line: "四线", team: "B", form: "生产主管交接班", status: "已审核", date: "2026-06-28", shift: "中", operator: "生产主管", submitTime: "2026-06-28 16:20", type: "done" },
+      { docNo: "DJ20260626014", batchNo: "JS26D015", line: "四线", team: "C", form: "生产主管交接班", status: "填写中", date: "2026-06-29", shift: "晚", operator: "生产主管", submitTime: "--", type: "draft" },
+      { docNo: "DJ20260626015", batchNo: "JS26D015", line: "四线", team: "B", form: "半成品检验报告", status: "已审核", date: "2026-06-30", shift: "中", operator: "质量员", submitTime: "2026-06-30 13:05", type: "done" },
+      { docNo: "DJ20260626016", batchNo: "JS26D015", line: "四线", team: "E", form: "半成品检验报告", status: "已提交", date: "2026-07-01", shift: "晚", operator: "质量员", submitTime: "2026-07-01 22:24", type: "submit" },
+      { docNo: "DJ20260626017", batchNo: "JS26D015", line: "四线", team: "B", form: "包装材料物料平衡计算表", status: "已提交", date: "2026-07-02", shift: "中", operator: "陈立", submitTime: "2026-07-02 13:18", type: "submit" },
+      { docNo: "DJ20260626018", batchNo: "JS26D015", line: "四线", team: "D", form: "包装材料物料平衡计算表", status: "已审核", date: "2026-07-03", shift: "晚", operator: "陈立", submitTime: "2026-07-03 21:44", type: "done" },
+      { docNo: "DJ20260626019", batchNo: "JS26D015", line: "四线", team: "B", form: "产品标签确认表", status: "已提交", date: "2026-07-04", shift: "中", operator: "刘佳", submitTime: "2026-07-04 13:30", type: "submit" },
+      { docNo: "DJ20260626020", batchNo: "JS26D015", line: "四线", team: "E", form: "产品放行单", status: "填写中", date: "2026-07-05", shift: "中", operator: "质量员", submitTime: "--", type: "draft" },
+      { docNo: "DJ20260626021", batchNo: "JS26D015", line: "四线", team: "C", form: "车间原材料物资称量记录", status: "已审核", date: "2026-06-26", shift: "晚", operator: "库管员", submitTime: "2026-06-26 19:55", type: "done" },
+      { docNo: "DJ20260626022", batchNo: "JS26D015", line: "四线", team: "A", form: "车间原材料物资称量记录", status: "已提交", date: "2026-06-27", shift: "早", operator: "库管员", submitTime: "2026-06-27 07:50", type: "submit" },
+      { docNo: "DJ20260626023", batchNo: "JS26D015", line: "四线", team: "C", form: "车间原材料物资领用记录", status: "已审核", date: "2026-06-28", shift: "晚", operator: "库管员", submitTime: "2026-06-28 20:02", type: "done" },
+      { docNo: "DJ20260626024", batchNo: "JS26D015", line: "四线", team: "A", form: "大批次封面", status: "已提交", date: "2026-06-29", shift: "早", operator: "生产主管", submitTime: "2026-06-29 08:10", type: "submit" },
+      { docNo: "DJ20260626025", batchNo: "JS26D015", line: "四线", team: "C", form: "大批次封面", status: "已审核", date: "2026-06-30", shift: "晚", operator: "生产主管", submitTime: "2026-06-30 20:10", type: "done" },
+      { docNo: "DJ20260626026", batchNo: "JS26D015", line: "四线", team: "D", form: "复合香精称量记录", status: "已审核", date: "2026-07-01", shift: "早", operator: "称量员", submitTime: "2026-07-01 08:18", type: "done" },
+      { docNo: "DJ20260626027", batchNo: "JS26D015", line: "四线", team: "E", form: "复合香精称量记录", status: "已提交", date: "2026-07-02", shift: "中", operator: "称量员", submitTime: "2026-07-02 14:33", type: "submit" },
+      { docNo: "DJ20260626028", batchNo: "JS26D015", line: "四线", team: "D", form: "工序管控质量检测报告", status: "已提交", date: "2026-07-03", shift: "早", operator: "质量员", submitTime: "2026-07-03 10:58", type: "submit" },
+      { docNo: "DJ20260626029", batchNo: "JS26D015", line: "四线", team: "B", form: "工序管控质量检测报告", status: "已审核", date: "2026-07-04", shift: "中", operator: "质量员", submitTime: "2026-07-04 15:21", type: "done" },
+      { docNo: "DJ20260626030", batchNo: "JS26D015", line: "四线", team: "D", form: "咖啡因车间库存记录表", status: "已审核", date: "2026-07-05", shift: "早", operator: "库管员", submitTime: "2026-07-05 08:06", type: "done" },
+      { docNo: "DJ20260626031", batchNo: "JS26D015", line: "四线", team: "E", form: "咖啡因车间转运记录", status: "已审核", date: "2026-06-26", shift: "中", operator: "转运员", submitTime: "2026-06-26 14:25", type: "done" },
+      { docNo: "DJ20260626032", batchNo: "JS26D015", line: "四线", team: "A", form: "开机检查", status: "已审核", date: "2026-06-27", shift: "早", operator: "设备员", submitTime: "2026-06-27 07:40", type: "done" },
+      { docNo: "DJ20260626033", batchNo: "JS26D015", line: "四线", team: "E", form: "开机检查", status: "已审核", date: "2026-06-28", shift: "中", operator: "设备员", submitTime: "2026-06-28 13:40", type: "done" },
+      { docNo: "DJ20260626034", batchNo: "JS26D015", line: "四线", team: "E", form: "配料工序记录", status: "已提交", date: "2026-06-29", shift: "中", operator: "配料员", submitTime: "2026-06-29 14:30", type: "submit" },
+      { docNo: "DJ20260626035", batchNo: "JS26D015", line: "四线", team: "C", form: "配料工序记录", status: "已审核", date: "2026-06-30", shift: "晚", operator: "配料员", submitTime: "2026-06-30 20:45", type: "done" },
+      { docNo: "DJ20260626036", batchNo: "JS26D015", line: "四线", team: "A", form: "清场记录（开机）", status: "已审核", date: "2026-07-01", shift: "晚", operator: "现场员", submitTime: "2026-07-01 19:48", type: "done" },
+      { docNo: "DJ20260626037", batchNo: "JS26D015", line: "四线", team: "B", form: "清场记录（收班）", status: "填写中", date: "2026-07-02", shift: "晚", operator: "现场员", submitTime: "--", type: "draft" },
+      { docNo: "DJ20260626038", batchNo: "JS26D015", line: "四线", team: "C", form: "溶糖生产工艺记录表", status: "已提交", date: "2026-07-03", shift: "早", operator: "溶糖员", submitTime: "2026-07-03 08:50", type: "submit" },
+      { docNo: "DJ20260626039", batchNo: "JS26D015", line: "四线", team: "D", form: "盛料桶物料投料和转运记录", status: "已提交", date: "2026-07-04", shift: "中", operator: "投料员", submitTime: "2026-07-04 14:18", type: "submit" },
+      { docNo: "DJ20260626040", batchNo: "JS26D015", line: "四线", team: "E", form: "停机检查", status: "填写中", date: "2026-07-05", shift: "晚", operator: "设备员", submitTime: "--", type: "draft" },
+      { docNo: "DJ20260626041", batchNo: "JS26D015", line: "四线", team: "A", form: "样品检测", status: "已提交", date: "2026-06-26", shift: "中", operator: "质量员", submitTime: "2026-06-26 15:30", type: "submit" },
+      { docNo: "DJ20260626042", batchNo: "JS26D015", line: "四线", team: "B", form: "原辅料物料平衡计算表", status: "已审核", date: "2026-06-27", shift: "晚", operator: "刘佳", submitTime: "2026-06-27 21:39", type: "done" }
     ];
 
     const batchNoEl = document.getElementById("batchNo");
@@ -922,6 +937,7 @@
       const body = data.map((row, index) => `
         <tr>
           <td class="left" title="${row.form}">${row.form}</td>
+          <td>${row.docNo}</td>
           <td>${row.batchNo}</td>
           <td>${row.line}</td>
           <td>${row.shift}</td>
@@ -938,6 +954,7 @@
         <table>
           <colgroup>
             <col style="width: 220px">
+            <col style="width: 150px">
             <col style="width: 140px">
             <col style="width: 90px">
             <col style="width: 100px">
@@ -951,6 +968,7 @@
           <thead>
             <tr>
               <th>工序/表单名称</th>
+              <th>单据号</th>
               <th>大批次号</th>
               <th>产线</th>
               <th>班次</th>
@@ -1026,6 +1044,7 @@
         <section class="detail-section">
           <div class="section-title">基础信息</div>
           <div class="detail-grid">
+            <div class="detail-item"><div class="detail-label">单据号</div><div class="detail-value">${row.docNo}</div></div>
             <div class="detail-item"><div class="detail-label">大批次号</div><div class="detail-value">${row.batchNo}</div></div>
             <div class="detail-item"><div class="detail-label">工序表单</div><div class="detail-value">${row.form}</div></div>
             <div class="detail-item"><div class="detail-label">产线</div><div class="detail-value">${row.line}</div></div>
