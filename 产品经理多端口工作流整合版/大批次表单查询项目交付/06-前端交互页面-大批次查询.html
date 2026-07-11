@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>前端交互页面 - 大批次查询</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Microsoft YaHei", Arial, sans-serif; color: #001a3a; background: #eef2f7; font-size: 14px; }
+    .app { min-height: 100vh; display: grid; grid-template-columns: 185px 1fr; grid-template-rows: 48px 34px 1fr; }
+    .brand { grid-row: 1 / 3; background: #1f5bd8; color: #fff; display: flex; align-items: center; gap: 12px; padding: 0 22px; }
+    .brand-mark { width: 34px; height: 34px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; align-items: end; }
+    .brand-mark i { display: block; background: #fff; border-radius: 1px; }
+    .brand-mark i:nth-child(1) { height: 17px; }
+    .brand-mark i:nth-child(2) { height: 28px; }
+    .brand-mark i:nth-child(3) { height: 22px; }
+    .brand-title { line-height: 1.1; font-weight: 700; font-size: 20px; }
+    .brand-title small { display: block; font-size: 12px; font-weight: 400; opacity: .95; }
+    .topbar { grid-column: 2; background: #fff; display: flex; align-items: center; gap: 26px; padding: 0 18px; border-bottom: 1px solid #dfe6f0; }
+    .hamburger { font-size: 18px; color: #001a3a; }
+    .nav { display: flex; align-items: center; gap: 28px; height: 100%; white-space: nowrap; }
+    .nav span { height: 100%; display: flex; align-items: center; color: #001a3a; }
+    .nav .active { color: #006dff; font-weight: 700; border-bottom: 3px solid #006dff; }
+    .top-tools { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+    .global-search { width: 124px; height: 30px; border: 1px solid #d8e0ec; padding: 0 10px; color: #9aa4b2; }
+    .icon-dot { width: 6px; height: 6px; background: #0d1b2f; border-radius: 50%; display: inline-block; }
+    .user-badge { width: 32px; height: 32px; border: 2px solid #ff9800; border-radius: 50%; color: #001a3a; display: grid; place-items: center; font-weight: 700; }
+    .tabs { grid-column: 2; background: #fff; display: flex; align-items: center; gap: 6px; padding: 0 12px; border-bottom: 1px solid #dfe6f0; box-shadow: 0 2px 8px rgba(20, 38, 68, .12); }
+    .tab { height: 25px; padding: 3px 12px; border: 1px solid #cfd8e5; background: #fff; color: #334155; line-height: 18px; }
+    .tab.active { color: #0b6fff; border-color: #79aeff; background: #edf5ff; }
+    .side { grid-row: 3; background: #fff; border-right: 1px solid #dfe6f0; overflow: hidden; }
+    .menu { height: 54px; display: flex; align-items: center; gap: 14px; padding: 0 26px; color: #001a3a; white-space: nowrap; }
+    .menu .bullet { width: 5px; height: 5px; border-radius: 50%; border: 1px solid #001a3a; }
+    .menu.active { background: #eaf2ff; color: #006dff; font-weight: 700; border-left: 4px solid #1a73ff; padding-left: 22px; }
+    .menu.active .bullet { background: #006dff; border-color: #006dff; }
+    .main { grid-column: 2; grid-row: 3; padding: 12px 12px 22px; overflow: auto; }
+    .search-panel { background: #fff; border: 1px solid #d9e2ef; box-shadow: 0 1px 5px rgba(0,0,0,.08); padding: 14px 18px 12px; margin-bottom: 12px; }
+    .search-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 136px 72px; gap: 12px 34px; align-items: center; }
+    .field { display: grid; grid-template-columns: 92px 1fr; align-items: center; min-width: 0; }
+    .field label { text-align: right; padding-right: 10px; color: #001a3a; }
+    .field label.required::before { content: "*"; color: #f56c6c; margin-right: 4px; }
+    .control { width: 100%; height: 32px; border: 1px solid #cfd8e5; background: #fff; padding: 0 12px; color: #001a3a; outline: none; }
+    .control:focus { border-color: #2f80ff; box-shadow: 0 0 0 2px rgba(47,128,255,.12); }
+    .control.error { border-color: #f56c6c; }
+    .date-wrap { position: relative; }
+    .date-wrap::after { content: "▣"; position: absolute; right: 12px; top: 6px; color: #001a3a; font-size: 13px; pointer-events: none; }
+    .btn { height: 32px; border: 1px solid #cfd8e5; background: #fff; color: #001a3a; cursor: pointer; padding: 0 20px; border-radius: 2px; }
+    .btn.primary { background: #1677ff; border-color: #1677ff; color: #fff; font-weight: 600; }
+    .btn.secondary { background: #fff; }
+    .result-panel { background: #fff; border: 1px solid #d9e2ef; box-shadow: 0 1px 5px rgba(0,0,0,.08); }
+    .result-head { height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px 0 18px; border-bottom: 1px solid #e8eef6; }
+    .query-summary { color: #001a3a; }
+    .query-summary b { color: #006dff; }
+    .table-tools { display: flex; align-items: center; gap: 18px; color: #001a3a; }
+    .tool-btn { border: 0; background: transparent; cursor: pointer; color: #001a3a; font-size: 15px; padding: 0; }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    th { height: 40px; background: #eaf2fb; color: #001a3a; font-weight: 700; border-right: 1px solid #dfe8f3; border-bottom: 1px solid #dfe8f3; text-align: center; }
+    td { height: 42px; border-right: 1px solid #e5ebf3; border-bottom: 1px solid #e5ebf3; padding: 0 10px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    td:first-child, th:first-child { text-align: left; padding-left: 12px; }
+    tr:nth-child(even) td { background: #fbfdff; }
+    .status { display: inline-flex; align-items: center; justify-content: center; min-width: 64px; height: 24px; border-radius: 2px; font-size: 13px; border: 1px solid; }
+    .reviewed { color: #0a8f3c; background: #eafaf0; border-color: #a5dfb8; }
+    .submitted { color: #006dff; background: #edf5ff; border-color: #9bc7ff; }
+    .editing { color: #e07a00; background: #fff4e5; border-color: #ffc77a; }
+    .view-link { color: #006dff; text-decoration: none; cursor: pointer; font-weight: 600; }
+    .view-link.disabled { color: #a8abb2; cursor: not-allowed; }
+    .empty { display: none; height: 220px; align-items: center; justify-content: center; color: #7b8794; }
+    .dev-note { position: fixed; right: 14px; bottom: 16px; background: #1f2937; color: #fff; border: 0; border-radius: 3px; padding: 12px 16px; cursor: pointer; box-shadow: 0 6px 16px rgba(0,0,0,.2); }
+    .drawer { position: fixed; right: -460px; top: 0; width: 460px; height: 100vh; background: #fff; border-left: 1px solid #d9e2ef; box-shadow: -5px 0 18px rgba(0,0,0,.14); transition: right .2s; z-index: 30; display: flex; flex-direction: column; }
+    .drawer.open { right: 0; }
+    .drawer header { height: 54px; padding: 0 18px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e5ebf3; font-weight: 700; }
+    .drawer main { padding: 16px 18px 28px; overflow: auto; line-height: 1.7; display: block; }
+    .drawer h3 { font-size: 15px; margin: 14px 0 6px; }
+    .drawer ul { margin: 6px 0; padding-left: 18px; }
+    .toast { position: fixed; top: 72px; left: 50%; transform: translateX(-50%); background: #fff; border: 1px solid #d9e2ef; box-shadow: 0 4px 14px rgba(0,0,0,.14); padding: 10px 16px; z-index: 40; display: none; }
+    @media (max-width: 1200px) {
+      .search-grid { grid-template-columns: 1fr 1fr; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <section class="brand">
+      <div class="brand-mark"><i></i><i></i><i></i></div>
+      <div class="brand-title">数智工厂<small>测试版</small></div>
+    </section>
+    <header class="topbar">
+      <span class="hamburger">≡</span>
+      <nav class="nav">
+        <span>运营中心</span><span>仓储管理</span><span class="active">生产管理</span><span>质量管理</span><span>设备管理</span><span>安全管理</span><span>人事行政管理</span><span>财务管理</span><span>数据中心</span><span>数据统计</span><span>综合管理</span><span>数据看板</span><span>设置</span>
+      </nav>
+      <div class="top-tools"><input class="global-search" value="请输入" readonly><span>◇</span><span class="icon-dot"></span><span>□</span><div class="user-badge">测</div><span>测试用户</span></div>
+    </header>
+    <div class="tabs"><div class="tab">工作台</div><div class="tab">消息中心 ×</div><div class="tab active">大批次查询 ×</div></div>
+    <aside class="side">
+      <div class="menu active"><span class="bullet"></span><span>过程管理</span></div>
+      <div class="menu"><span class="bullet"></span><span>生产库存报表</span></div>
+      <div class="menu"><span class="bullet"></span><span>生产基础信息</span></div>
+      <div class="menu"><span class="bullet"></span><span>配方内容物复核</span></div>
+      <div class="menu"><span class="bullet"></span><span>剩余内容物复核</span></div>
+      <div class="menu"><span class="bullet"></span><span>单据逾期记录</span></div>
+      <div class="menu"><span class="bullet"></span><span>单据逾期设置</span></div>
+      <div class="menu"><span class="bullet"></span><span>全链路追溯</span></div>
+      <div class="menu"><span class="bullet"></span><span>主管</span></div>
+      <div class="menu"><span class="bullet"></span><span>开发过程中发现的遗失</span></div>
+      <div class="menu"><span class="bullet"></span><span>生产计划管理</span></div>
+    </aside>
+    <main class="main">
+      <section class="search-panel">
+        <div class="search-grid">
+          <div class="field"><label class="required">大批次号:</label><input id="batchNo" class="control" value="JS26D015" placeholder="请输入大批次号"></div>
+          <div class="field"><label>生产日期:</label><div class="date-wrap"><input id="prodDate" class="control" placeholder="年 / 月 / 日"></div></div>
+          <div class="field"><label>班次:</label><select id="shift" class="control"><option value="">请选择班次</option><option>早</option><option>中</option><option>晚</option></select></div>
+          <div></div><div></div>
+          <div class="field"><label>产线:</label><select id="line" class="control"><option>四线</option><option>一线</option><option>二线</option><option>三线</option></select></div>
+          <div class="field"><label>班组:</label><select id="team" class="control"><option value="">请选择班组</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></div>
+          <div></div>
+          <button class="btn primary" onclick="searchRows()">搜索</button>
+          <button class="btn secondary" onclick="resetRows()">重置</button>
+        </div>
+      </section>
+      <section class="result-panel">
+        <div class="result-head">
+          <div id="summary" class="query-summary">当前查询：大批次号 <b>JS26D015</b>，产线 <b>四线</b>，共 <b>42</b> 条记录</div>
+          <div class="table-tools"><button class="tool-btn" onclick="searchRows()">↻</button><button class="tool-btn" onclick="showToast('列表展示字段以最终字段配置为准')">☷</button><button class="tool-btn" onclick="showToast('表格设置待研发确认')">⚙</button></div>
+        </div>
+        <div id="tableWrap">
+          <table>
+            <thead><tr><th style="width: 220px;">工序/表单名称</th><th style="width: 150px;">单据号</th><th style="width: 140px;">大批次号</th><th style="width: 90px;">产线</th><th style="width: 90px;">班次</th><th style="width: 90px;">班组</th><th style="width: 110px;">原状态</th><th style="width: 120px;">生产日期</th><th style="width: 120px;">操作人</th><th style="width: 150px;">提交时间</th><th style="width: 90px;">操作</th></tr></thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+        <div id="empty" class="empty">未查询到该大批次号相关表单记录，请检查大批次号是否输入正确</div>
+      </section>
+    </main>
+  </div>
+  <button class="dev-note" onclick="toggleDrawer()">开发备注</button>
+  <aside id="drawer" class="drawer">
+    <header><span>开发备注</span><button class="btn secondary" onclick="toggleDrawer()">关闭</button></header>
+    <main>
+      <p>PRD 仍为正式依据，本说明仅做开发走读辅助。</p>
+      <h3>页面定位</h3>
+      <p>生产管理 / 过程管理 / 大批次查询。按大批次号查询系统内所有包含该大批次号的表单记录。</p>
+      <h3>查询规则</h3>
+      <ul><li>大批次号必填，精确匹配。</li><li>生产日期、产线、班次、班组均为选填筛选条件。</li><li>当前页面按目标图使用单个生产日期；是否保留日期范围需产品最终确认。</li></ul>
+      <h3>结果规则</h3>
+      <ul><li>单表格平铺展示，不按表单名称分组。</li><li>字段顺序按目标页面：工序/表单名称、单据号、大批次号、产线、班次、班组、原状态、生产日期、操作人、提交时间、操作。</li><li>点击“查看”进入原表单详情页。</li></ul>
+      <h3>权限与待确认</h3>
+      <ul><li>查看权限继承原表单详情权限。</li><li>无权限是否展示行记录、是否置灰查看按钮，需按现有权限策略确认。</li><li>状态枚举当前按已审核、已提交、填写中展示；其他状态兼容待确认。</li></ul>
+    </main>
+  </aside>
+  <div id="toast" class="toast"></div>
+  <script>
+    const names = ["拆包工序记录", "灌装工序记录", "打码工序记录", "热缩包装", "码垛工序记录", "生产主管交接班", "半成品检验报告", "包装材料物料平衡计算表", "产品标签确认表", "产品放行单", "车间原材料物资称量记录", "车间原材料物资领用记录"];
+    const people = ["李明", "周敏", "王珊", "陈立", "黄杰", "赵强", "何伟", "刘佳", "许宁", "孙磊", "质量员", "库管员", "生产主管"];
+    const shifts = ["早", "晚", "早", "中", "晚", "早", "中"];
+    const teams = ["B", "A", "C", "D", "A", "A", "E", "B", "C", "B", "D", "E"];
+    const statuses = ["已审核", "已提交", "已审核", "填写中", "已提交"];
+    function pad(n){ return String(n).padStart(2, "0"); }
+    const rows = Array.from({length: 42}, (_, i) => {
+      const day = 26 + (i % 10);
+      const month = day > 30 ? 7 : 6;
+      const fixedDay = day > 30 ? day - 30 : day;
+      const date = `2026-${pad(month)}-${pad(fixedDay)}`;
+      const status = statuses[i % statuses.length];
+      const time = status === "填写中" ? "--" : `${date} ${pad(8 + (i % 15))}:${pad((40 + i * 7) % 60)}`;
+      return {
+        formName: names[i % names.length],
+        docNo: `DJ202606${pad(26001 + i).slice(-4)}`,
+        batchNo: "JS26D015",
+        line: "四线",
+        shift: shifts[i % shifts.length],
+        team: teams[i % teams.length],
+        status,
+        prodDate: date,
+        operator: people[i % people.length],
+        submitTime: time,
+        canView: i % 13 !== 1
+      };
+    });
+    function statusClass(status){ return status === "已审核" ? "reviewed" : status === "已提交" ? "submitted" : "editing"; }
+    function render(data){
+      const tbody = document.getElementById("tbody");
+      const tableWrap = document.getElementById("tableWrap");
+      const empty = document.getElementById("empty");
+      tbody.innerHTML = "";
+      if(!data.length){ tableWrap.style.display = "none"; empty.style.display = "flex"; return; }
+      tableWrap.style.display = "block"; empty.style.display = "none";
+      tbody.innerHTML = data.map(row => `<tr><td>${row.formName}</td><td>${row.docNo}</td><td>${row.batchNo}</td><td>${row.line}</td><td>${row.shift}</td><td>${row.team}</td><td><span class="status ${statusClass(row.status)}">${row.status}</span></td><td>${row.prodDate}</td><td>${row.operator}</td><td>${row.submitTime}</td><td>${row.canView ? `<span class="view-link" onclick="showToast('已打开原表单详情页')">查看</span>` : `<span class="view-link disabled" onclick="showToast('无该表单查看权限')">查看</span>`}</td></tr>`).join("");
+    }
+    function searchRows(){
+      const batch = document.getElementById("batchNo");
+      const prodDate = document.getElementById("prodDate").value.trim();
+      const line = document.getElementById("line").value;
+      const shift = document.getElementById("shift").value;
+      const team = document.getElementById("team").value;
+      if(!batch.value.trim()){
+        batch.classList.add("error");
+        showToast("请输入大批次号");
+        return;
+      }
+      batch.classList.remove("error");
+      let data = rows.filter(row => row.batchNo === batch.value.trim());
+      if(prodDate) data = data.filter(row => row.prodDate === prodDate.replaceAll("/", "-"));
+      if(line) data = data.filter(row => row.line === line);
+      if(shift) data = data.filter(row => row.shift === shift);
+      if(team) data = data.filter(row => row.team === team);
+      document.getElementById("summary").innerHTML = `当前查询：大批次号 <b>${batch.value.trim()}</b>${line ? `，产线 <b>${line}</b>` : ""}，共 <b>${data.length}</b> 条记录`;
+      render(data);
+    }
+    function resetRows(){
+      document.getElementById("batchNo").value = "";
+      document.getElementById("prodDate").value = "";
+      document.getElementById("line").value = "四线";
+      document.getElementById("shift").value = "";
+      document.getElementById("team").value = "";
+      document.getElementById("tbody").innerHTML = "";
+      document.getElementById("tableWrap").style.display = "block";
+      document.getElementById("empty").style.display = "none";
+      document.getElementById("summary").innerHTML = "当前查询：请先输入大批次号后搜索";
+    }
+    function showToast(message){
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.style.display = "block";
+      setTimeout(() => toast.style.display = "none", 1800);
+    }
+    function toggleDrawer(){ document.getElementById("drawer").classList.toggle("open"); }
+    render(rows);
+  </script>
+</body>
+</html>
