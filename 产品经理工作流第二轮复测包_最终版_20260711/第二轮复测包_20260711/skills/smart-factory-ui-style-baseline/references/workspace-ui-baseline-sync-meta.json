@@ -1,0 +1,33 @@
+{
+  "synced_at": "2026-07-11 11:31:17",
+  "workspace": "/Users/yhl/Documents/codex项目/产品流程/产品经理多端口工作流整合版",
+  "baseline_docs": [
+    {
+      "path": "/Users/yhl/Documents/codex项目/产品流程/产品经理多端口工作流整合版/13_数智工厂系统风格基线/数智工厂系统设计风格与交互规范基线.md",
+      "name": "数智工厂系统设计风格与交互规范基线.md",
+      "mtime": "2026-07-11 09:50:29"
+    },
+    {
+      "path": "/Users/yhl/Documents/codex项目/产品流程/产品经理多端口工作流整合版/13_数智工厂系统风格基线/数智工厂系统信息架构与原型生成准则.md",
+      "name": "数智工厂系统信息架构与原型生成准则.md",
+      "mtime": "2026-07-11 09:50:29"
+    },
+    {
+      "path": "/Users/yhl/Documents/codex项目/产品流程/产品经理多端口工作流整合版/13_数智工厂系统风格基线/工厂端原型生成检查清单.md",
+      "name": "工厂端原型生成检查清单.md",
+      "mtime": "2026-07-11 09:50:29"
+    },
+    {
+      "path": "/Users/yhl/Documents/codex项目/产品流程/产品经理多端口工作流整合版/13_数智工厂系统风格基线/系统菜单可见结构总览.md",
+      "name": "系统菜单可见结构总览.md",
+      "mtime": "2026-07-11 09:50:29"
+    },
+    {
+      "path": "/Users/yhl/Documents/codex项目/产品流程/产品经理多端口工作流整合版/13_数智工厂系统风格基线/动作权限与隐藏路由字典.md",
+      "name": "动作权限与隐藏路由字典.md",
+      "mtime": "2026-07-11 09:50:29"
+    }
+  ],
+  "html_samples": [],
+  "output": "/Users/yhl/Documents/codex项目/产品流程/产品工作流测试0710/07-试跑验证反馈表-多端口产品工作流/07-试跑验证反馈表-多端口产品工作流/smart-factory-ui-style-baseline/references/workspace-ui-baseline-sync.md"
+}
