@@ -1,0 +1,35 @@
+{
+  "testedAt": "2026-07-15T07:13:36.459Z",
+  "environment": "数智工厂测试环境",
+  "account": "txc_admin_6",
+  "login": "PASS",
+  "targetBatch": "GD12A015",
+  "menuTextSearch": {
+    "hasLargeBatchQuery": false
+  },
+  "roleMenuApi": {
+    "httpStatus": 200,
+    "businessCode": "1",
+    "hasLargeBatchQuery": false,
+    "rolePayloadSize": 1541488,
+    "batchRelatedTitles": [
+      "批次明细",
+      "原料批次库存查询",
+      "原厂批次编码规则"
+    ]
+  },
+  "consoleErrors": [
+    "Cannot read properties of null (reading 'getAttribute')",
+    "Cannot read properties of null (reading 'getAttribute')",
+    "Cannot read properties of null (reading 'getAttribute')",
+    "Cannot read properties of null (reading 'getAttribute')",
+    "Cannot read properties of undefined (reading 'type')",
+    "Cannot read properties of undefined (reading 'type')",
+    "Cannot read properties of undefined (reading 'type')",
+    "Cannot read properties of null (reading 'getAttribute')",
+    "Cannot read properties of undefined (reading 'type')",
+    "Cannot read properties of undefined (reading 'type')",
+    "Cannot read properties of undefined (reading 'type')"
+  ],
+  "conclusion": "BLOCKED: 当前账号菜单权限清单无大批次查询入口；未发起真实批次查询。"
+}

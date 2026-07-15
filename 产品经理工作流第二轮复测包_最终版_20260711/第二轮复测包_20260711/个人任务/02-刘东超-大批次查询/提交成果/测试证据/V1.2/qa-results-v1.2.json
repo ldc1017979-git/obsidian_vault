@@ -1,0 +1,62 @@
+{
+  "testedAt": "2026-07-15T07:03:47.743Z",
+  "file": "15B-大批次查询开发实现原型-V1.2.html",
+  "targeted": [
+    {
+      "name": "默认入口正常",
+      "status": "PASS",
+      "detail": "大批次查询｜数智工厂"
+    },
+    {
+      "name": "无查询权限菜单与路由拦截",
+      "status": "PASS",
+      "detail": "无大批次查询权限\n\n当前账号没有大批次查询权限，菜单入口与页面路由均不可访问。"
+    },
+    {
+      "name": "刷新失败保留旧结果",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "groups": 29,
+          "rows": 58
+        },
+        "after": {
+          "groups": 29,
+          "rows": 58,
+          "notice": "刷新失败，已保留上次查询结果。\n重新查询"
+        }
+      }
+    }
+  ],
+  "smoke": [
+    {
+      "name": "必填",
+      "status": "PASS",
+      "detail": "大批次号不能为空"
+    },
+    {
+      "name": "正常29组58条",
+      "status": "PASS",
+      "detail": {
+        "g": 29,
+        "r": 58,
+        "en": 47,
+        "dis": 11
+      }
+    },
+    {
+      "name": "详情返回",
+      "status": "PASS",
+      "detail": 29
+    },
+    {
+      "name": "开发备注",
+      "status": "PASS",
+      "detail": 1
+    }
+  ],
+  "consoleErrors": [],
+  "uncovered": [
+    "真实集成环境任意数据量10秒内全量返回"
+  ]
+}

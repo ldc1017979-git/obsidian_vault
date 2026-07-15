@@ -1,0 +1,94 @@
+{
+  "testedAt": "2026-07-15T06:51:21.050Z",
+  "file": "15A-大批次查询开发实现原型-V1.1.html",
+  "results": [
+    {
+      "name": "页面标题与首屏",
+      "status": "PASS",
+      "detail": "页面正常打开"
+    },
+    {
+      "name": "必填校验",
+      "status": "PASS",
+      "detail": "大批次号不能为空"
+    },
+    {
+      "name": "获取关联条件与控件启用",
+      "status": "PASS",
+      "detail": "6项控件已启用"
+    },
+    {
+      "name": "正常查询29组58条",
+      "status": "PASS",
+      "detail": {
+        "groups": 29,
+        "rows": 58
+      }
+    },
+    {
+      "name": "全部收起与展开",
+      "status": "PASS",
+      "detail": {
+        "collapsed": 29,
+        "expanded": 29
+      }
+    },
+    {
+      "name": "详情权限禁用与可用",
+      "status": "PASS",
+      "detail": {
+        "disabled": 11,
+        "enabled": 47
+      }
+    },
+    {
+      "name": "详情跳转与返回保留",
+      "status": "PASS",
+      "detail": "详情与返回正常"
+    },
+    {
+      "name": "日期倒置校验",
+      "status": "PASS",
+      "detail": "结束日期不得早于开始日期"
+    },
+    {
+      "name": "整体技术失败",
+      "status": "PASS",
+      "detail": "查询失败"
+    },
+    {
+      "name": "开发备注搜索与双向定位",
+      "status": "PASS",
+      "detail": {
+        "searchResults": 1,
+        "highlighted": 1
+      }
+    },
+    {
+      "name": "无记录异常",
+      "status": "PASS",
+      "detail": {
+        "notice": "重新查询",
+        "empty": "未查询到相关表单\n请检查大批次号或调整筛选条件后重试。",
+        "groups": 0,
+        "resultDisplay": "none"
+      }
+    },
+    {
+      "name": "部分技术失败",
+      "status": "PASS",
+      "detail": {
+        "notice": "部分数据查询失败，当前结果可能不完整。\n重新查询",
+        "empty": "关联条件已加载点击“查询”查看该大批次关联表单。",
+        "groups": 26,
+        "resultDisplay": "block"
+      }
+    }
+  ],
+  "layout1180": {
+    "bodyScrollWidth": 1180,
+    "viewport": 1180,
+    "consoleErrors": []
+  },
+  "consoleErrors": []
+}
