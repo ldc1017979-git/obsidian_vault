@@ -18,4 +18,10 @@
 - `rd /s`
 - `rmdir /s`
 - `Remove-Item -Recurse`
-- `rm -rf
+- `rm -rf`
+
+## Codex 永久记忆
+
+每次在本 Vault 开始任务前，先读取 `Codex-Memory/Home.md` 与 `Codex-Memory/00-System/Memory-Protocol.md`，再按任务需要读取 `Codex-Memory` 下的相关记忆。
+
+任务完成后，将新确认且长期有用的偏好、规划、可复用工作流、重要决策和项目状态增量写入对应的 `Codex-Memory` 文件。禁止写入秘密或未经确认的推测；当前用户明确指令始终高于历史记忆。

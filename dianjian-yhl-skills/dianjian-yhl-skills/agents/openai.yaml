@@ -1,0 +1,6 @@
+interface:
+  display_name: "YHL 活动点检表"
+  short_description: "根据活动规则和需求生成可打印的前后端上线点检表"
+  default_prompt: "Use $dianjian-yhl-skills to create a printable上线点检表 from activity rules and requirements."
+policy:
+  allow_implicit_invocation: true

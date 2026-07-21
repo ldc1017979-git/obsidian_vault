@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Memory"
+  short_description: "Load and preserve durable cross-project working memory"
+  default_prompt: "Use $obsidian-memory to load relevant long-term context before the task and save durable outcomes afterward."

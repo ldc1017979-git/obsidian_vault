@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>可视化库位 - 库位占用信息原型</title>
+  <style>
+    :root{--blue:#3484eb;--line:#e5e8ee;--muted:#8d96a5;--text:#303641;--bg:#f3f5f8;--green:#2fb79e;--orange:#efa536;--red:#ef6a70}
+    *{box-sizing:border-box} body{margin:0;font:12px/1.45 "Microsoft YaHei","PingFang SC",sans-serif;color:var(--text);background:var(--bg);min-width:1120px}
+    button,input,select{font:inherit}.top{height:50px;background:var(--blue);color:#fff;display:flex;align-items:center;padding:0 18px;box-shadow:0 1px 3px #9cb7db}
+    .hamb{font-size:20px;margin-right:20px}.brand{font-size:18px;font-weight:600}.brand small{display:block;font-size:10px;font-weight:400;opacity:.9}.top-actions{margin-left:auto;display:flex;align-items:center;gap:16px}.alarm{background:#f39a25;border:0;color:white;padding:7px 16px;border-radius:3px}.user{font-weight:600}
+    .shell{display:grid;grid-template-columns:110px 1fr;height:calc(100vh - 50px)}.side{background:white;border-right:1px solid var(--line)}
+    .menu{padding:0;margin:0;list-style:none}.menu li{height:52px;display:flex;align-items:center;padding:0 16px;color:#4f5968;border-left:3px solid transparent}.menu li.active{background:#eef5ff;color:#2776da;border-left-color:#2776da;font-weight:600}
+    .main{min-width:0;display:flex;flex-direction:column}.tabs{height:36px;background:white;border-bottom:1px solid var(--line);display:flex;align-items:end;padding-left:10px}.tab{height:30px;padding:7px 18px;border:1px solid var(--line);border-bottom:0;background:#fafafa;color:#748092;margin-right:4px}.tab.active{background:#fff;color:#2f82e8;border-top:2px solid #2f82e8;padding-top:6px}
+    .page{padding:10px;display:flex;flex-direction:column;min-height:0;flex:1}.zone-tabs{height:34px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;padding:0 12px;gap:25px;color:#7c8798;overflow:hidden}.zone-tabs .active{color:#2f82e8;border-bottom:2px solid #2f82e8;height:34px;display:flex;align-items:center}
+    .toolbar{height:42px;background:#fff;border:1px solid var(--line);border-top:0;display:flex;align-items:center;padding:0 14px}.search{margin-left:auto;display:flex;gap:7px}.search input,.search select{height:28px;border:1px solid #d8dde6;padding:0 9px;background:#fff;color:#5e6775}.btn{height:28px;border:0;border-radius:2px;padding:0 13px;color:#fff;cursor:pointer}.btn.blue{background:#3d91ef}.btn.orange{background:var(--orange)}.btn.green{background:var(--green)}.btn.ghost{background:#fff;color:#697386;border:1px solid #d7dce5}.btn:focus-visible,.rack:focus-visible,.thumb:focus-visible{outline:2px solid #165fba;outline-offset:2px}
+    .content{min-height:0;flex:1;display:grid;grid-template-columns:minmax(700px,1fr) 270px;background:#fff;border:1px solid var(--line);border-top:0}.canvas{position:relative;padding:18px 25px;border-right:1px solid var(--line)}
+    .legend{display:flex;align-items:center;gap:13px;font-size:13px}.legend strong{font-size:16px;margin-right:12px}.sw{width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:4px;border-radius:1px}.sw.occupied{background:#68717f}.sw.empty{border:2px solid #17c4cb}.sw.free{background:#dfe5ec}.sw.pre{background:#43bd78}.sw.lock{background:#ef6a70}.sw.chosen{background:#2185d8}.sw.raw{background:#f0a018}
+    .rack-board{margin-top:21px;width:290px}.cols{display:grid;grid-template-columns:42px repeat(6,36px);gap:4px;text-align:center;color:#939cab;margin-bottom:7px}.row{display:grid;grid-template-columns:42px repeat(6,36px);gap:4px;margin-bottom:10px}.row-label{height:23px;background:#e8f3ff;color:#4993e6;display:flex;align-items:center;justify-content:center;border-radius:3px}.rack{border:0;height:23px;border-radius:2px;background:#d7d9dc;cursor:pointer;transition:.15s transform,.15s box-shadow}.rack:hover{transform:translateY(-1px);box-shadow:0 2px 5px #c8ccd3}.rack.occupied{background:#62666b}.rack.lock{background:#ef7479}.rack.selected{box-shadow:0 0 0 2px #2386e7 inset}.hint{position:absolute;left:25px;bottom:20px;color:#a0a8b4}
+    .right{padding:18px 15px;overflow:auto}.gauge{height:118px;text-align:center;position:relative}.arc{width:128px;height:64px;margin:0 auto;border:10px solid #eef0f3;border-bottom:0;border-radius:128px 128px 0 0;position:relative;overflow:hidden}.arc:after{content:"";position:absolute;inset:-10px 50% -1px -10px;background:#f5a044;transform-origin:100% 100%;transform:rotate(-36deg)}.rate{font-size:22px;margin-top:-28px;position:relative}.rate-label{color:#8e97a5;margin-top:2px}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:11px 14px;color:#7a8492;margin:14px 0}.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.action-grid .btn{font-size:11px;padding:0 5px}.occupancy{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}.occupancy.hidden{display:none}
+    .section-title{font-size:15px;font-weight:600;border-left:3px solid #3484eb;padding-left:8px;margin-bottom:14px}.field{display:grid;grid-template-columns:64px 1fr;gap:8px;margin-bottom:10px}.field label{color:#8d96a5}.field span{word-break:break-all}.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:7px}.thumb{height:68px;border:1px solid #d9dee7;border-radius:3px;background-image:url('assets/warehouse-evidence-triptych.png');background-size:300% 100%;background-repeat:no-repeat;cursor:pointer}.thumb:nth-child(1){background-position:0 0}.thumb:nth-child(2){background-position:50% 0}.thumb:nth-child(3){background-position:100% 0}.caption{color:#9aa2ae;margin-top:7px;font-size:11px}.empty-note{color:#a0a8b4;text-align:center;padding:32px 0}
+    .toast{position:fixed;top:66px;left:50%;transform:translateX(-50%);background:#fff;border:1px solid #dfe5ec;box-shadow:0 4px 16px #45566c33;padding:9px 16px;border-radius:3px;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1}
+    .modal{position:fixed;inset:0;background:#17202dbb;display:none;align-items:center;justify-content:center;z-index:10}.modal.open{display:flex}.viewer{width:min(920px,84vw);height:min(720px,80vh);background:#111;border-radius:4px;position:relative;overflow:hidden}.viewer-image{width:100%;height:100%;background-image:url('assets/warehouse-evidence-triptych.png');background-size:300% 100%;background-repeat:no-repeat;background-position:0 0}.close,.prev,.next{position:absolute;border:0;background:#202734bb;color:#fff;cursor:pointer}.close{right:12px;top:12px;padding:8px 12px;border-radius:3px}.prev,.next{top:50%;transform:translateY(-50%);width:40px;height:52px;font-size:22px}.prev{left:10px}.next{right:10px}.counter{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:#202734bb;color:#fff;padding:5px 10px;border-radius:12px}
+    @media(max-width:1250px){.content{grid-template-columns:minmax(620px,1fr) 250px}.zone-tabs{gap:15px}.right{padding-left:12px;padding-right:12px}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="hamb">≡</div><div class="brand">可视化库位 · 江苏2车间<small>Visualization Storage System</small></div><div class="top-actions"><button class="alarm">清除所有报警</button><span class="user">丁振平</span></div></header>
+  <div class="shell">
+    <aside class="side"><ul class="menu"><li>首页</li><li class="active">库区管理</li><li>标签记录</li><li>设备状态</li><li>条码检测</li><li>报警记录</li><li>操作记录</li><li>车辆地图</li></ul></aside>
+    <main class="main">
+      <div class="tabs"><div class="tab">首页</div><div class="tab active">库区管理</div></div>
+      <section class="page">
+        <div class="zone-tabs"><span>A区</span><span>B区</span><span>C区</span><span>D区</span><span>E1异常区</span><span>E2异常区</span><span>F1加工区</span><span>F2返工区</span><span>G1铁板区</span><span>G2铁板区</span><span>H1空罐区</span><span>J1纸板区</span><span class="active">J2纸板区</span><span>K1顶盖区</span></div>
+        <div class="toolbar"><span>库位管理</span><div class="search"><span>搜索</span><select aria-label="搜索类型"><option>托盘标签</option><option>库位编号</option></select><input aria-label="搜索内容" placeholder="内容" /><button class="btn blue" id="searchBtn">搜索</button></div></div>
+        <div class="content">
+          <section class="canvas">
+            <div class="legend"><strong>库位图</strong><span><i class="sw occupied"></i>占用</span><span><i class="sw empty"></i>空栈板</span><span><i class="sw free"></i>空闲</span><span><i class="sw pre"></i>预留</span><span><i class="sw lock"></i>锁闭</span><span><i class="sw chosen"></i>选中</span><span><i class="sw raw"></i>原库位</span></div>
+            <div class="rack-board"><div class="cols"><span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div><div class="row"><span class="row-label">1</span><button class="rack lock" aria-label="1排1列锁闭"></button><button class="rack lock" aria-label="1排2列锁闭"></button><button class="rack lock" aria-label="1排3列锁闭"></button><button class="rack" aria-label="1排4列空闲"></button><button class="rack" aria-label="1排5列空闲"></button><button class="rack" aria-label="1排6列空闲"></button></div><div class="row"><span class="row-label">2</span><button class="rack" aria-label="2排1列空闲"></button><button class="rack" aria-label="2排2列空闲"></button><button class="rack" aria-label="2排3列空闲"></button><button class="rack" aria-label="2排4列空闲"></button><button class="rack" aria-label="2排5列空闲"></button><button class="rack occupied selected" aria-label="2排6列占用" data-occupied="true"></button></div></div>
+            <div class="hint">点击灰色库位查看非占用状态，点击深灰色库位查看占用信息</div>
+          </section>
+          <aside class="right">
+            <div class="gauge"><div class="arc"></div><div class="rate">30.00%</div><div class="rate-label">库位使用率</div></div>
+            <div class="stats"><span>库位容量：10 个</span><span>可用库位：7 个</span><span>库位使用：3 个</span><span>查批次数：0 批</span></div>
+            <div class="action-grid"><button class="btn blue">修改库区类型</button><button class="btn ghost">修改库位状态</button><button class="btn green">呼叫叉车来料</button><button class="btn orange">呼叫叉车退料</button><button class="btn ghost">还原库位操作</button></div>
+            <section class="occupancy" id="occupancy"><div class="section-title">占用信息</div><div class="field"><label>叉车员</label><span>张伟（FC-018）</span></div><div class="field"><label>上传时间</label><span>2026-07-21 09:42:16</span></div><div class="field"><label>照片</label><span>现场照片 3 张</span></div><div class="photos"><button class="thumb" data-index="0" aria-label="查看现场照片1"></button><button class="thumb" data-index="1" aria-label="查看现场照片2"></button><button class="thumb" data-index="2" aria-label="查看现场照片3"></button></div><div class="caption">仅展示当前占用状态下最新一次上传记录</div></section>
+            <div class="empty-note" id="emptyNote" hidden>当前库位非占用状态</div>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast">已刷新</div>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="现场照片预览"><div class="viewer"><div class="viewer-image" id="viewerImage"></div><button class="close" id="closeModal">关闭</button><button class="prev" id="prevPhoto" aria-label="上一张">‹</button><button class="next" id="nextPhoto" aria-label="下一张">›</button><div class="counter" id="counter">1 / 3</div></div></div>
+  <script>
+    const racks=[...document.querySelectorAll('.rack')],occupancy=document.getElementById('occupancy'),emptyNote=document.getElementById('emptyNote');
+    racks.forEach(r=>r.addEventListener('click',()=>{racks.forEach(x=>x.classList.remove('selected'));r.classList.add('selected');const used=r.dataset.occupied==='true';occupancy.classList.toggle('hidden',!used);emptyNote.hidden=used;}));
+    const modal=document.getElementById('modal'),viewerImage=document.getElementById('viewerImage'),counter=document.getElementById('counter');let current=0;
+    function showPhoto(i){current=(i+3)%3;viewerImage.style.backgroundPosition=["0 0","50% 0","100% 0"][current];counter.textContent=`${current+1} / 3`;modal.classList.add('open');}
+    document.querySelectorAll('.thumb').forEach(t=>t.addEventListener('click',()=>showPhoto(Number(t.dataset.index))));
+    document.getElementById('closeModal').onclick=()=>modal.classList.remove('open');document.getElementById('prevPhoto').onclick=()=>showPhoto(current-1);document.getElementById('nextPhoto').onclick=()=>showPhoto(current+1);modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open');if(modal.classList.contains('open')&&e.key==='ArrowLeft')showPhoto(current-1);if(modal.classList.contains('open')&&e.key==='ArrowRight')showPhoto(current+1)});
+    const toast=document.getElementById('toast');document.getElementById('searchBtn').onclick=()=>{toast.textContent='已定位到当前库位';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1300)};
+  </script>
+</body>
+</html>
