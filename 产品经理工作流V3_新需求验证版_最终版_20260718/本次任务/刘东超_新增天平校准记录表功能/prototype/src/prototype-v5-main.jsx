@@ -1,0 +1,7 @@
+import React from 'react';
+import {createRoot} from 'react-dom/client';
+import {Prototype} from './PrototypeV4.jsx';
+import './prototype.css';
+import './prototype-v4.css';
+
+createRoot(document.getElementById('root')).render(<Prototype />);
