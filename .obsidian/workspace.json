@@ -11,10 +11,14 @@
             "id": "df99941dfe86913f",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "关系图谱"
+              "type": "markdown",
+              "state": {
+                "file": "字段和基础资料/数智工厂/SKILL.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SKILL"
             }
           }
         ]
@@ -190,7 +194,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c1173590ae2670a1",
+  "active": "df99941dfe86913f",
   "lastOpenFiles": [
     "产品经理工作流第二轮复测包_最终版_20260711/广东基地.md",
     "字段和基础资料/数智工厂/贵州/字段/质量管理/截图/质量管理_RO水检测记录表_复检信息_重爬_03.png",
