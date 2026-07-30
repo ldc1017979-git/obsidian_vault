@@ -12,3 +12,9 @@ updated: 2026-07-21
 - 理由：内容可读、可搜索、可链接、可持续增量维护。
 - 约束：当前指令高于历史记忆；不得存储凭据；不把推测写成事实。
 - 来源：当前任务
+
+## 2026-07-29 Daily review automation
+
+- Active automation: 17-00-codex.
+- Pending confirmation: legacy obsidian-17 remains in history.
+
