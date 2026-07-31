@@ -14,3 +14,5 @@ updated: 2026-07-29
 - [[内容创作技能体系]] — 可复用内容生产、中文社媒文案、营销洞察与 AI 视频制作技能（已安装，待选题验证）
 
 - [[AI-Content-Skills-and-WeChat-Topics]] - Four content skills installed; topic selection pending
+
+> 2026-07-30：英文项目记录 [[AI-Content-Skills-and-WeChat-Topics]] 已标记为重复并停止更新；主记录为 [[内容创作技能体系]]。来源：自动化任务 17-00-codex。
