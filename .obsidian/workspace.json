@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "f3406542962f4168",
+        "id": "1ddbc1f42fe96d00",
         "type": "tabs",
         "children": [
           {
-            "id": "6838f0da32a00829",
+            "id": "80d77b99c33d3d10",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "字段和基础资料/数智工厂/SKILL.md",
+                "file": "字段和基础资料/数智工厂/湖北/基础资料/设置/设置基础资料/仓库设置.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SKILL"
+              "title": "仓库设置"
             }
           }
         ]
@@ -158,13 +158,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "raw/硅谷顶尖 AI 大佬如何搭建个人AI知识库？从0开始用Claude Code + Obsidian搭建Karpathy的LLM Wiki知识库_哔哩哔哩_bilibili.md",
+                "file": "字段和基础资料/数智工厂/湖北/基础资料/设置/设置基础资料/仓库设置.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "硅谷顶尖 AI 大佬如何搭建个人AI知识库？从0开始用Claude Code + Obsidian搭建Karpathy的LLM Wiki知识库_哔哩哔哩_bilibili 的大纲"
+              "title": "大纲"
             }
           },
           {
@@ -207,9 +207,12 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "c0c8caea0410300e",
+  "active": "80d77b99c33d3d10",
   "lastOpenFiles": [
     "字段和基础资料/数智工厂/SKILL.md",
+    "字段和基础资料/数智工厂/湖北/基础资料/安全管理/消防器材台账/消防器材台账-数据采集报告.md",
+    "README.md",
+    "canvas/pages/page/assets/cowart-futuristic-workspace-20260630-105833.png",
     "Codex-Memory/05-Daily/2026-08-03.md",
     "Codex-Memory/05-Daily/2026-07-31.md",
     "Codex-Memory/05-Daily/2026-07-30.md",
@@ -231,7 +234,6 @@
     "字段和基础资料/数智工厂/湖北/字段/质量管理/QC质量控制/原材料检测/原材料检测/截图/QC质量控制_原材料检测_香精入厂检测记录_单据日志.png",
     "字段和基础资料/数智工厂/湖北/字段/质量管理/QC质量控制/原材料检测/原材料检测/截图/QC质量控制_原材料检测_香精入厂检测记录_详情页.png",
     "字段和基础资料/数智工厂/湖北/字段/质量管理/QC质量控制/原材料检测/原材料检测/截图/QC质量控制_原材料检测_香精入厂检测记录_列表页.png",
-    "字段和基础资料/数智工厂/湖北/字段/质量管理/QC质量控制/原材料检测/原材料检测/截图/QC质量控制_原材料检测_顶盖底盖检验报告_采集日志.png",
     "字段和基础资料/数智工厂/湖北/字段/质量管理/QC质量控制/原材料检测/原材料检测/截图",
     "字段和基础资料/数智工厂/湖北/字段/质量管理/截图/_cans_seam_detail.json",
     "字段和基础资料/数智工厂/湖北/字段/质量管理/QC质量控制/原材料检测/空罐检验/截图",
@@ -251,8 +253,6 @@
     "字段和基础资料/数智工厂/贵州/字段/人事行政/绩效管理/综合工时个人绩效/综合工时个人绩效-数据采集报告.md",
     "字段和基础资料/数智工厂/贵州/字段/人事行政/绩效管理/关键事件记录表/关键事件记录表-数据采集报告.md",
     "字段和基础资料/数智工厂/贵州/字段/仓储管理/采购管理/原料退换货/原料退货记录.md",
-    "字段和基础资料/数智工厂/贵州/字段/安全管理/双重预防工作机制/隐患排查治理/内部日常排查/食堂安全点检表/食堂安全点检表-数据采集报告.md",
-    "字段和基础资料/数智工厂/贵州/基础资料/生产管理/生产基础信息/产线工序/产线工序.md",
     "字段和基础资料/数智工厂/湖北/字段/质量管理/截图/_extract_material.json",
     "字段和基础资料/数智工厂/湖北/字段/质量管理/截图/_forms_manifest.json",
     "未命名.canvas"

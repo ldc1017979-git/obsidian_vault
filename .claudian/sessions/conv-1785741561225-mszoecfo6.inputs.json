@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1785741561225-mszoecfo6",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1785741561266-bdiwnmu",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1785741561222-y1njh2a",
+      "timestamp": 1785741561222,
+      "rawDisplayText": "你好",
+      "canonicalText": "你好",
+      "context": {
+        "currentNote": {
+          "path": "字段和基础资料/数智工厂/SKILL.md"
+        }
+      },
+      "images": [],
+      "contentDigest": "815b1925f3db319cfc8ef8cad8a91b3f8b512f630d8f82635cb105e93e666c2a",
+      "providerUserMessageId": "019fc67d-da3e-7160-a085-e6b0a4c88ee8",
+      "providerAssistantMessageId": "msg_0e9698616b785817016a7041150d908198bb2532817659b9e9"
+    }
+  ]
+}
