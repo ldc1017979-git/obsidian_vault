@@ -249,7 +249,12 @@
         }
       ],
       "modelAliases": {},
-      "visibleModels": [],
+      "visibleModels": [
+        "gpt-5.5",
+        "gpt-5.6-luna",
+        "gpt-5.6-terra",
+        "gpt-5.6-sol"
+      ],
       "enableUltraEffort": true,
       "reasoningSummary": "detailed",
       "environmentVariables": "",
