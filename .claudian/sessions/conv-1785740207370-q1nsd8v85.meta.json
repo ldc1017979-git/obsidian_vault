@@ -1,0 +1,10 @@
+{
+  "id": "conv-1785740207370-q1nsd8v85",
+  "providerId": "claude",
+  "title": "你好",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1785740207407,
+  "updatedAt": 1785740485015,
+  "sessionId": null,
+  "selectedModel": "sonnet"
+}

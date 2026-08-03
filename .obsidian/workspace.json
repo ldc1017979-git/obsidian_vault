@@ -176,13 +176,23 @@
               "icon": "git-pull-request",
               "title": "Source Control"
             }
+          },
+          {
+            "id": "c0c8caea0410300e",
+            "type": "leaf",
+            "state": {
+              "type": "claudian-view",
+              "state": {},
+              "icon": "bot",
+              "title": "Claudian"
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 640.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -193,11 +203,13 @@
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "bases:新建数据库": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "realclaudian:Open Claudian": false
     }
   },
-  "active": "c1173590ae2670a1",
+  "active": "c0c8caea0410300e",
   "lastOpenFiles": [
+    "字段和基础资料/数智工厂/SKILL.md",
     "Codex-Memory/05-Daily/2026-08-03.md",
     "Codex-Memory/05-Daily/2026-07-31.md",
     "Codex-Memory/05-Daily/2026-07-30.md",
@@ -241,7 +253,6 @@
     "字段和基础资料/数智工厂/贵州/字段/仓储管理/采购管理/原料退换货/原料退货记录.md",
     "字段和基础资料/数智工厂/贵州/字段/安全管理/双重预防工作机制/隐患排查治理/内部日常排查/食堂安全点检表/食堂安全点检表-数据采集报告.md",
     "字段和基础资料/数智工厂/贵州/基础资料/生产管理/生产基础信息/产线工序/产线工序.md",
-    "Codex-Memory/04-Projects/数智工厂-湖北-质量管理字段提取.md",
     "字段和基础资料/数智工厂/湖北/字段/质量管理/截图/_extract_material.json",
     "字段和基础资料/数智工厂/湖北/字段/质量管理/截图/_forms_manifest.json",
     "未命名.canvas"
