@@ -173,8 +173,8 @@
             "state": {
               "type": "git-view",
               "state": {},
-              "icon": "git-pull-request",
-              "title": "Source Control"
+              "icon": "lucide-ghost",
+              "title": "git-view"
             }
           },
           {
@@ -192,7 +192,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 640.5
+    "width": 589.5
   },
   "left-ribbon": {
     "hiddenItems": {
