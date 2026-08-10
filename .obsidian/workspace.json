@@ -172,9 +172,19 @@
               "icon": "git-pull-request",
               "title": "Source Control"
             }
+          },
+          {
+            "id": "1c42d19b626305ff",
+            "type": "leaf",
+            "state": {
+              "type": "claudian-view",
+              "state": {},
+              "icon": "bot",
+              "title": "Claudian"
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "horizontal",
@@ -189,10 +199,12 @@
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "bases:新建数据库": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "xiaohongshu-importer:Import Xiaohongshu note": false,
+      "realclaudian:Open Claudian": false
     }
   },
-  "active": "356e8ccb26c6d163",
+  "active": "1c42d19b626305ff",
   "lastOpenFiles": [
     "写发版报告/数智工厂/供应链/字段/服务商/要货计划.md",
     "学习管理/raw/看板类产品使用包/成品检测质量看板/index.html",
