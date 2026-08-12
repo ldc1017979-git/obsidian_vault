@@ -139,15 +139,15 @@ description: 使用Chrome DevTools MCP功能对系统模块基础配置进行全
 
 ## ⚙️ 配置参数
 
-| 参数名称 | 类型 | 默认值 | 说明 |
-|----------|------|--------|------|
-| target_url | string | - | 目标系统登录地址 |
-| output_dir | string | ./output | 输出目录路径 |
-| wait_timeout | number | 5000 | 页面加载等待时间（毫秒） |
-| retry_count | number | 3 | 操作失败重试次数 |
-| retry_interval | number | 3000 | 重试间隔时间（毫秒） |
-| screenshot_format | string | png | 截图格式（png/jpeg/webp） |
-| screenshot_quality | number | 90 | 截图质量（0-100） |
+| 参数名称               | 类型     | 默认值      | 说明                  |
+| ------------------ | ------ | -------- | ------------------- |
+| target_url         | string | -        | 目标系统登录地址            |
+| output_dir         | string | ./output | 输出目录路径              |
+| wait_timeout       | number | 5000     | 页面加载等待时间（毫秒）        |
+| retry_count        | number | 3        | 操作失败重试次数            |
+| retry_interval     | number | 3000     | 重试间隔时间（毫秒）          |
+| screenshot_format  | string | png      | 截图格式（png/jpeg/webp） |
+| screenshot_quality | number | 90       | 截图质量（0-100）         |
 
 ---
 
