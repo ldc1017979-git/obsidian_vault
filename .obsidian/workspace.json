@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "0abae459149cf6f3",
+        "id": "fa372829dc69d052",
         "type": "tabs",
         "children": [
           {
-            "id": "28ac5543ab266596",
+            "id": "f3cc38476ff68a46",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "每周资讯/2026-08-24.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "2026-08-24"
+              "title": "新标签页"
             }
           }
         ]
@@ -208,8 +204,11 @@
       "xiaohongshu-importer:Import Xiaohongshu note": false
     }
   },
-  "active": "28ac5543ab266596",
+  "active": "f3cc38476ff68a46",
   "lastOpenFiles": [
+    "学习管理/assets/刘东超的简历.pdf",
+    "每周资讯/2026-08-31.md",
+    "每周资讯/2026-08-24.md",
     "Codex-Memory/05-Daily/2026-08-28.md",
     "Codex-Memory/05-Daily/2026-08-27.md",
     "Codex-Memory/05-Daily/2026-08-26.md",
@@ -219,10 +218,8 @@
     "学习管理/assets/20260825合格证二维码信息(1).xlsx.crdownload",
     "学习管理/assets/20260825生产计划-排产计划-生产订单(1).xlsx",
     "学习管理/assets/20260825生产计划-排产计划-生产订单(1).xlsx.crdownload",
-    "学习管理/assets/刘东超的简历.pdf",
     "每周资讯/2026-08-24-AI生产力提升-公众号文章.md",
     "每周资讯/2026-08-17.md",
-    "每周资讯/2026-08-24.md",
     "Codex-Memory/05-Daily/2026-08-24.md",
     "Codex-Memory/05-Daily/2026-08-22.md",
     "学习管理/raw/数智化建设架构-贵州基地设备采集参数汇总.xlsx",
@@ -240,8 +237,6 @@
     "Codex-Memory/05-Daily/2026-08-17.md",
     "字段和基础资料/数智工厂/系统单据字段字典抽取与汇总表标准_灌装工序方式_20260812.md",
     "Codex-Memory/05-Daily/2026-08-14.md",
-    "Codex-Memory/04-Projects/四省仓储管理字典表字段补全.md",
-    "Codex-Memory/05-Daily/2026-08-13.md",
     "字段和基础资料/数智工厂/系统单据字段字典抽取与汇总表标准_灌装工序方式_20260812(1).md.crdownload",
     "字段和基础资料/数智工厂/系统单据字段字典抽取与汇总表标准_灌装工序方式_20260812.md.crdownload",
     "每周资讯/2026-08-12-Pally个人AI助理-公众号封面.png",
