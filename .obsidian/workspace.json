@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "fa372829dc69d052",
+        "id": "bceabcd6974380b3",
         "type": "tabs",
         "children": [
           {
-            "id": "f3cc38476ff68a46",
+            "id": "cfeef56ac8c0485a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "产品经理工作流第二轮复测包_最终版_20260711/广东基地.md",
+                "file": "产品经理工作流V3_新需求验证版_最终版_20260718/workflow/13_数智工厂系统风格基线/数智工厂系统设计风格与交互规范基线.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "广东基地"
+              "title": "数智工厂系统设计风格与交互规范基线"
+            }
+          },
+          {
+            "id": "1ff23be8ef05df42",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "每周资讯/2026-09-07.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-09-07"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -96,7 +111,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "写发版报告/数智工厂/供应链/字段/服务商/要货计划.md",
+                "file": "Codex-Memory/04-Projects/Project-Index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +121,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "要货计划 的反向链接列表"
+              "title": "反向链接"
             }
           },
           {
@@ -115,12 +130,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "raw/硅谷顶尖 AI 大佬如何搭建个人AI知识库？从0开始用Claude Code + Obsidian搭建Karpathy的LLM Wiki知识库_哔哩哔哩_bilibili.md",
-                "linksCollapsed": false,
+                "file": "conflict-files-obsidian-git.md",
+                "linksCollapsed": true,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "硅谷顶尖 AI 大佬如何搭建个人AI知识库？从0开始用Claude Code + Obsidian搭建Karpathy的LLM Wiki知识库_哔哩哔哩_bilibili 的出链列表"
+              "title": "出链"
             }
           },
           {
@@ -158,7 +173,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "字段和基础资料/数智工厂/湖北/基础资料/设置/设置基础资料/仓库设置.md",
+                "file": "每周资讯/2026-09-07.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -166,29 +181,9 @@
               "icon": "lucide-list",
               "title": "大纲"
             }
-          },
-          {
-            "id": "356e8ccb26c6d163",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {},
-              "icon": "lucide-ghost",
-              "title": "git-view"
-            }
-          },
-          {
-            "id": "c0c8caea0410300e",
-            "type": "leaf",
-            "state": {
-              "type": "claudian-view",
-              "state": {},
-              "icon": "bot",
-              "title": "Claudian"
-            }
           }
         ],
-        "currentTab": 6
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -203,45 +198,43 @@
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "bases:新建数据库": false,
-      "obsidian-git:Open Git source control": false,
-      "realclaudian:Open Claudian": false,
-      "xiaohongshu-importer:Import Xiaohongshu note": false
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c0c8caea0410300e",
+  "active": "c1173590ae2670a1",
   "lastOpenFiles": [
+    "conflict-files-obsidian-git.md",
+    "每周资讯/2026-09-07.md",
+    "Codex-Memory/05-Daily/2026-09-08.md",
+    "Codex-Memory/04-Projects/Project-Index.md",
+    "Codex-Memory/04-Projects/设备异常配置与通知中心原型.md",
+    "产品经理工作流V3_新需求验证版_最终版_20260718/workflow/13_数智工厂系统风格基线/数智工厂系统设计风格与交互规范基线.md",
+    "Codex-Memory/05-Daily/2026-09-07.md",
+    "Codex-Memory/05-Daily/2026-09-05.md",
+    "产品经理工作流V3_新需求验证版_最终版_20260718/workflow/01-Codex自动引导总入口-多端口产品工作流.md",
+    "Codex-Memory/05-Daily/2026-07-21.md",
+    "Codex-Memory/skills/obsidian-memory/SKILL.md",
+    "Codex-Memory/99-Inbox/Capture.md",
+    "Codex-Memory/04-Projects/产品经理工作流V3-新增天平校准记录表.md",
+    "Codex-Memory/04-Projects/内容创作技能体系.md",
+    "Codex-Memory/04-Projects/四省仓储管理字典表字段补全.md",
+    "Codex-Memory/04-Projects/数智工厂-广东-质量管理字段提取.md",
+    "Codex-Memory/04-Projects/数智工厂-湖北-质量管理字段提取.md",
+    "Codex-Memory/04-Projects/数智工厂-贵州-质量管理字段提取.md",
+    "产品经理工作流V3_新需求验证版_最终版_20260718/workflow/00-给产品经理从这里开始.md",
+    "产品经理工作流第二轮复测包_最终版_20260711/广东基地.md",
+    "产品经理工作流V3_新需求验证版_最终版_20260718/workflow/02-项目启动与过程记录模板-多端口产品工作流.md",
     "Codex-Memory/05-Daily/2026-09-01.md",
     "学习管理/assets/刘东超的简历.pdf",
     "每周资讯/2026-08-31.md",
     "每周资讯/2026-08-24.md",
     "Codex-Memory/05-Daily/2026-08-28.md",
     "Codex-Memory/05-Daily/2026-08-27.md",
-    "Codex-Memory/05-Daily/2026-08-26.md",
-    "每周资讯/2026-08-26-Obsidian本地大模型与隐私-公众号文章.md",
-    "Codex-Memory/05-Daily/2026-08-25.md",
     "学习管理/assets/20260825合格证二维码信息(1).xlsx",
     "学习管理/assets/20260825合格证二维码信息(1).xlsx.crdownload",
     "学习管理/assets/20260825生产计划-排产计划-生产订单(1).xlsx",
     "学习管理/assets/20260825生产计划-排产计划-生产订单(1).xlsx.crdownload",
-    "每周资讯/2026-08-24-AI生产力提升-公众号文章.md",
-    "每周资讯/2026-08-17.md",
-    "Codex-Memory/05-Daily/2026-08-24.md",
-    "Codex-Memory/05-Daily/2026-08-22.md",
     "学习管理/raw/数智化建设架构-贵州基地设备采集参数汇总.xlsx",
-    "每周资讯/2026-08-10.md",
-    "Codex-Memory/05-Daily/2026-08-21.md",
-    "Codex-Memory/05-Daily/2026-08-20.md",
-    "每周资讯/2026-08-18-Gemini-3.7-Flash-公众号文章.md",
-    "Codex-Memory/05-Daily/2026-08-18.md",
-    "学习管理/wiki/市场端疑问确认清单.md",
-    "学习管理/wiki/供应链疑问确认清单.md",
-    "学习管理/wiki/工厂端疑问确认清单(6).md",
-    "学习管理/raw/看板类产品使用包/README.md",
-    "字段和基础资料/数智工厂/系统单据字段字典抽取与汇总表标准_灌装工序方式_20260812(1).md",
-    "每周资讯/2026-08-17-GPT-5.6-Sol-Ultrafast-公众号文章.md",
-    "Codex-Memory/05-Daily/2026-08-17.md",
-    "字段和基础资料/数智工厂/系统单据字段字典抽取与汇总表标准_灌装工序方式_20260812.md",
-    "Codex-Memory/05-Daily/2026-08-14.md",
     "字段和基础资料/数智工厂/系统单据字段字典抽取与汇总表标准_灌装工序方式_20260812(1).md.crdownload",
     "字段和基础资料/数智工厂/系统单据字段字典抽取与汇总表标准_灌装工序方式_20260812.md.crdownload",
     "每周资讯/2026-08-12-Pally个人AI助理-公众号封面.png",
